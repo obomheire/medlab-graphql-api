@@ -12,39 +12,44 @@ import { AuthService } from '../service/auth.service';
 
 @Resolver()
 export class AuthResolver {
-    constructor(
-        private readonly authService: AuthService,
-    ) {}
+  constructor(private readonly authService: AuthService) {}
 
-    @Mutation(() => LoginResponse)
-    async login(@Args('input') input: AuthLoginInput): Promise<LoginResponse>{
-        return await this.authService.login(input);
-    }
+  @Mutation(() => LoginResponse)
+  async login(@Args('input') input: AuthLoginInput): Promise<LoginResponse> {
+    return await this.authService.login(input);
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Mutation(() => String)
-    async logout(@CtxUser() user: User): Promise<string>{
-        return await this.authService.logout(user.id);
-    }
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => String)
+  async logout(@CtxUser() user: User): Promise<string> {
+    return await this.authService.logout(user.id);
+  }
 
-    @UseGuards(GqlAuthGuard)
-    @Mutation(() => String)
-    async changePassword(@CtxUser() user: User, @Args('input') input: ChangePasswordInput): Promise<string>{
-        return await this.authService.changePassword(user.id, input);
-    }
+  @UseGuards(GqlAuthGuard)
+  @Mutation(() => String)
+  async changePassword(
+    @CtxUser() user: User,
+    @Args('input') input: ChangePasswordInput,
+  ): Promise<string> {
+    return await this.authService.changePassword(user.id, input);
+  }
 
-    @Mutation(() => String)
-    async forgotPassword(@Args('email') email: string): Promise<string>{
-        return await this.authService.forgotPassword(email);
-    }
+  @Mutation(() => String)
+  async forgotPassword(@Args('email') email: string): Promise<string> {
+    return await this.authService.forgotPassword(email);
+  }
 
-    @Mutation(() => String)
-    async resetPassword(@Args('input') input: ResetPasswordInput): Promise<string>{
-        return await this.authService.resetPassword(input);
-    }
+  @Mutation(() => String)
+  async resetPassword(
+    @Args('input') input: ResetPasswordInput,
+  ): Promise<string> {
+    return await this.authService.resetPassword(input);
+  }
 
-    @Mutation(() => String)
-    async changePasswordAtFirstLogin(@Args('input') input: FirstLoginInput): Promise<string>{
-        return await this.authService.changePasswordAtFirstLogin(input);
-    }
+  @Mutation(() => String)
+  async changePasswordAtFirstLogin(
+    @Args('input') input: FirstLoginInput,
+  ): Promise<string> {
+    return await this.authService.changePasswordAtFirstLogin(input);
+  }
 }

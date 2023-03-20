@@ -23,7 +23,10 @@ export class Allergy {
   @Field(() => String, { description: 'allergen field (placeholder)' })
   allergen: string;
 
-  @Field(() => String, { description: 'level field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'level field (placeholder)',
+    nullable: true,
+  })
   // @Column({ type: 'enum', enum: AllergyLevelEnum, nullable: true })
   level: AllergyLevelEnum;
 
@@ -139,7 +142,10 @@ export class Recomendation {
   @Field(() => String, { description: 'note field (placeholder)' })
   note: string;
 
-  @Field(() => String, { description: 'date field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'date field (placeholder)',
+    nullable: true,
+  })
   recommender: string;
 }
 
@@ -186,7 +192,7 @@ export class Visit {
     description: 'visit date field (placeholder)',
     nullable: true,
   })
-  @Column({ nullable: true , type: 'json' })
+  @Column({ nullable: true, type: 'json' })
   recommendation: Recomendation;
 
   @Field(() => DoctorNote, {
@@ -198,11 +204,11 @@ export class Visit {
 
   @ManyToOne(() => Patient, (patient) => patient.visits)
   @Field(() => String, { description: 'patient field (placeholder)' })
-  patient: string
+  patient: string;
 
   @ManyToOne(() => User, (doctor) => doctor.visits)
   @Field(() => String, { description: 'doctor field (placeholder)' })
-  doctor: string
+  doctor: string;
 
   @Field(() => [String], { nullable: true })
   @OneToMany(
@@ -211,9 +217,13 @@ export class Visit {
     { nullable: true },
   )
   investigations: InvestigationEntity[];
- 
+
   @Field(() => [String], { nullable: true })
-  @OneToMany(() => PharmacyPrescription, (prescriptions) => prescriptions.visit, { nullable: true })
+  @OneToMany(
+    () => PharmacyPrescription,
+    (prescriptions) => prescriptions.visit,
+    { nullable: true },
+  )
   prescriptions: PharmacyPrescription[];
 
   @CreateDateColumn()

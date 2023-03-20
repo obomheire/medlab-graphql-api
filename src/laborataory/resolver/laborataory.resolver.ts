@@ -9,7 +9,10 @@ export class LaborataoryResolver {
   constructor(private readonly laborataoryService: LaborataoryService) {}
 
   @Mutation(() => Laborataory)
-  createLaborataory(@Args('createLaborataoryInput') createLaborataoryInput: CreateLaborataoryInput) {
+  createLaborataory(
+    @Args('createLaborataoryInput')
+    createLaborataoryInput: CreateLaborataoryInput,
+  ) {
     return this.laborataoryService.create(createLaborataoryInput);
   }
 
@@ -24,8 +27,14 @@ export class LaborataoryResolver {
   }
 
   @Mutation(() => Laborataory)
-  updateLaborataory(@Args('updateLaborataoryInput') updateLaborataoryInput: UpdateLaborataoryInput) {
-    return this.laborataoryService.update(updateLaborataoryInput.id, updateLaborataoryInput);
+  updateLaborataory(
+    @Args('updateLaborataoryInput')
+    updateLaborataoryInput: UpdateLaborataoryInput,
+  ) {
+    return this.laborataoryService.update(
+      updateLaborataoryInput.id,
+      updateLaborataoryInput,
+    );
   }
 
   @Mutation(() => Laborataory)

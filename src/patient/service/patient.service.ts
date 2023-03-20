@@ -22,10 +22,12 @@ export class PatientService {
     try {
       const patient = this.patientRepository.create(createPatientInput);
       //assign unique
-      const serialNumber = await generateIncrementalValue(this.patientRepository);
+      const serialNumber = await generateIncrementalValue(
+        this.patientRepository,
+      );
       const unique = `PAT-${serialNumber}`;
 
-      patient.unique = unique
+      patient.unique = unique;
       return await this.patientRepository.save(patient);
     } catch (error) {
       throw error;
@@ -144,7 +146,9 @@ export class PatientService {
       const patient = this.patientRepository.create(createPatientInput);
       //assign unique
       patient.admissionStatus = AdmissionStatusEnum.EMERGENCY;
-      const serialNumber = await generateIncrementalValue(this.patientRepository);
+      const serialNumber = await generateIncrementalValue(
+        this.patientRepository,
+      );
       const unique = `PAT-${serialNumber}`;
       patient.unique = unique;
       return await this.patientRepository.save(patient);
@@ -176,10 +180,16 @@ export class PatientService {
           where: { admissionStatus: AdmissionStatusEnum.EMERGENCY },
         });
       }
-      if(search) {
-        patients = patients.filter(patient => {
-          return patient.firstName.toLowerCase().includes(search.toLowerCase()) || patient.lastName.toLowerCase().includes(search.toLowerCase()) || patient.email.toLowerCase().includes(search.toLowerCase()) || patient.unique.toLowerCase().includes(search.toLowerCase()) || patient.phoneNumber.toLowerCase().includes(search.toLowerCase())
-        })
+      if (search) {
+        patients = patients.filter((patient) => {
+          return (
+            patient.firstName.toLowerCase().includes(search.toLowerCase()) ||
+            patient.lastName.toLowerCase().includes(search.toLowerCase()) ||
+            patient.email.toLowerCase().includes(search.toLowerCase()) ||
+            patient.unique.toLowerCase().includes(search.toLowerCase()) ||
+            patient.phoneNumber.toLowerCase().includes(search.toLowerCase())
+          );
+        });
       }
       return patients;
     } catch (error) {

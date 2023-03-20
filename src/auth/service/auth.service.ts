@@ -84,11 +84,11 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
     const isPasswordValid = await user.validatePassword(password);
-    console.log(isPasswordValid)
+    console.log(isPasswordValid);
     if (!isPasswordValid) {
       throw new BadRequestException('Invalid password');
     }
-    if(user.accountStatus !== AccountStatusEnum.ACTIVE){
+    if (user.accountStatus !== AccountStatusEnum.ACTIVE) {
       throw new BadRequestException('Account is not active');
     }
     const tokens = await this.getTokens({
@@ -103,7 +103,7 @@ export class AuthService {
     //   user.accountStatus = AccountStatusEnum.ACTIVE
     //   await this.userRepository.save(user)
     // }
-    
+
     return {
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
@@ -132,7 +132,7 @@ export class AuthService {
         unique: user.unique,
         accountStatus: user.accountStatus,
       });
-    
+
       return {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
@@ -155,7 +155,7 @@ export class AuthService {
   async logout(userId: string, refreshToken = null): Promise<string> {
     try {
       await this.userService.updateRefreshToken(userId, refreshToken);
-      return 'logout successful'
+      return 'logout successful';
     } catch (error) {
       throw new ForbiddenException('Access Denied');
     }
@@ -234,9 +234,7 @@ export class AuthService {
   }
 
   //change password at first login. the login is with email and password. then prompt to change password. then update account status from inactive to active
-  async changePasswordAtFirstLogin(
-    data: FirstLoginInput
-  ): Promise<string> {
+  async changePasswordAtFirstLogin(data: FirstLoginInput): Promise<string> {
     try {
       const { email, password, newPassword, confirmPassword } = data;
       const user = await this.userService.findByEmail(email);
@@ -244,16 +242,19 @@ export class AuthService {
         throw new NotFoundException('User not found');
       }
       const isPasswordValid = await user.validatePassword(password);
-      console.log(isPasswordValid)
+      console.log(isPasswordValid);
       if (!isPasswordValid) {
         throw new BadRequestException('Invalid password');
       }
       if (newPassword !== confirmPassword) {
         throw new BadRequestException('Password mismatch');
       }
-      const newUser = await this.userService.updatePassword(user.id, newPassword);
-      newUser.accountStatus = AccountStatusEnum.ACTIVE
-      await this.userRepository.save(newUser)
+      const newUser = await this.userService.updatePassword(
+        user.id,
+        newPassword,
+      );
+      newUser.accountStatus = AccountStatusEnum.ACTIVE;
+      await this.userRepository.save(newUser);
       return 'Password change successful, you cqan now login';
     } catch (error) {
       throw error;

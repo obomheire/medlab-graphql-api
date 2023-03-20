@@ -156,7 +156,10 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
-  @Field(() => String, { description: 'phone number field (placeholder)' , nullable: true })
+  @Field(() => String, {
+    description: 'phone number field (placeholder)',
+    nullable: true,
+  })
   @Column({ nullable: true })
   phoneNumber?: string;
 
@@ -221,7 +224,7 @@ export class User {
   @Column({ nullable: false, unique: true })
   unique: string;
 
-  @Field(() => String,  { nullable: true })
+  @Field(() => String, { nullable: true })
   @Column({ type: 'enum', nullable: true, enum: MaritalStatusEnum })
   maritalStatus: MaritalStatusEnum;
 
@@ -234,14 +237,24 @@ export class User {
   role: Role;
 
   @Field(() => Designation, { nullable: true })
-  @ManyToOne(() => Designation, (designation) => designation.users, { nullable: true })
+  @ManyToOne(() => Designation, (designation) => designation.users, {
+    nullable: true,
+  })
   designation: Designation;
 
   @Field(() => [String], { nullable: true })
-  @OneToMany(() => InvestigationEntity, (investigations) => investigations.doctor, { nullable: true })
+  @OneToMany(
+    () => InvestigationEntity,
+    (investigations) => investigations.doctor,
+    { nullable: true },
+  )
   investigations: InvestigationEntity[];
 
-  @OneToMany(() => PharmacyPrescription, (prescriptions) => prescriptions.doctor, { nullable: true })
+  @OneToMany(
+    () => PharmacyPrescription,
+    (prescriptions) => prescriptions.doctor,
+    { nullable: true },
+  )
   @Field(() => [PharmacyPrescription], { nullable: true })
   prescriptions: PharmacyPrescription[];
 
@@ -280,7 +293,7 @@ export class User {
     try {
       const isMatch = await bcrypt.compare(pass, this.password);
       return isMatch;
-      console.log(isMatch)
+      console.log(isMatch);
     } catch (error) {
       throw new InternalServerErrorException('Error while validating password');
     }

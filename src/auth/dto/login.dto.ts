@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 @InputType()
 export class AuthLoginInput {
-  @Field({ nullable: true})
+  @Field({ nullable: true })
   @IsString()
   @IsEmail()
   @IsOptional()

@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int,  } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UserService } from '../service/user.service';
 import { User } from '../entities/user.entity';
 import { CreateUserInput } from '../dto/create-user.input';
@@ -20,7 +20,9 @@ export class UserResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => UserResponse, { name: 'users' })
-  async findAll(@Args( 'filter',{defaultValue: new FilterDto()}) filter?: FilterDto): Promise<UserResponse> {
+  async findAll(
+    @Args('filter', { defaultValue: new FilterDto() }) filter?: FilterDto,
+  ): Promise<UserResponse> {
     return await this.userService.findAll(filter);
   }
 
@@ -38,7 +40,10 @@ export class UserResolver {
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
-  updateUser(@Args('id') id: string, @Args('updateUserInput') updateUserInput: UpdateUserInput) {
+  updateUser(
+    @Args('id') id: string,
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+  ) {
     return this.userService.update(id, updateUserInput);
   }
 }

@@ -9,7 +9,10 @@ export class AppointmentResolver {
   constructor(private readonly appointmentService: AppointmentService) {}
 
   @Mutation(() => Appointment)
-  createAppointment(@Args('createAppointmentInput') createAppointmentInput: CreateAppointmentInput) {
+  createAppointment(
+    @Args('createAppointmentInput')
+    createAppointmentInput: CreateAppointmentInput,
+  ) {
     return this.appointmentService.create(createAppointmentInput);
   }
 
@@ -24,8 +27,14 @@ export class AppointmentResolver {
   }
 
   @Mutation(() => Appointment)
-  updateAppointment(@Args('updateAppointmentInput') updateAppointmentInput: UpdateAppointmentInput) {
-    return this.appointmentService.update(updateAppointmentInput.id, updateAppointmentInput);
+  updateAppointment(
+    @Args('updateAppointmentInput')
+    updateAppointmentInput: UpdateAppointmentInput,
+  ) {
+    return this.appointmentService.update(
+      updateAppointmentInput.id,
+      updateAppointmentInput,
+    );
   }
 
   @Mutation(() => Appointment)

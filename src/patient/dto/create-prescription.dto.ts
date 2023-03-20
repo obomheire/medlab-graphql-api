@@ -84,7 +84,7 @@ export class CreatePrescriptionInput {
 
   @Field(() => String)
   @IsString()
-  patient: string
+  patient: string;
 
   @Field(() => String)
   @IsString()

@@ -14,12 +14,16 @@ export class PatientResolver {
   constructor(private readonly patientService: PatientService) {}
 
   @Mutation(() => Patient)
-  createPatient(@Args('createPatientInput') createPatientInput: CreatePatientInput) {
+  createPatient(
+    @Args('createPatientInput') createPatientInput: CreatePatientInput,
+  ) {
     return this.patientService.create(createPatientInput);
   }
 
   @Query(() => PatientResponse, { name: 'patients' })
-  async findAll(@Args( 'filter',{defaultValue: new FilterDto()}) filter?: FilterDto): Promise<PatientResponse> {
+  async findAll(
+    @Args('filter', { defaultValue: new FilterDto() }) filter?: FilterDto,
+  ): Promise<PatientResponse> {
     return await this.patientService.findAll(filter);
   }
 
@@ -34,26 +38,37 @@ export class PatientResolver {
   }
 
   @Mutation(() => Patient)
-  updatePatient(@Args('updatePatientInput') updatePatientInput: UpdatePatientInput) {
-    return this.patientService.update(updatePatientInput.id, updatePatientInput);
+  updatePatient(
+    @Args('updatePatientInput') updatePatientInput: UpdatePatientInput,
+  ) {
+    return this.patientService.update(
+      updatePatientInput.id,
+      updatePatientInput,
+    );
   }
 
   //create emergency patient
   @Mutation(() => Patient)
-  createEmergencyPatient(@Args('createPatientInput') createPatientInput: CreatePatientInput) {
+  createEmergencyPatient(
+    @Args('createPatientInput') createPatientInput: CreatePatientInput,
+  ) {
     return this.patientService.createEmergencyPatient(createPatientInput);
   }
 
   //get emergency patients
   @Query(() => [Patient], { name: 'emergencyPatients' })
-  async getEmergencyPatients(@Args( 'filter',{defaultValue: new FilterDto()}) filter?: FilterDto): Promise<Patient[]> {
+  async getEmergencyPatients(
+    @Args('filter', { defaultValue: new FilterDto() }) filter?: FilterDto,
+  ): Promise<Patient[]> {
     return await this.patientService.getEmergencyPatients(filter);
   }
 
   //mark patient for discharge
   @Mutation(() => Patient)
-  scheduleDischarge(@Args('id', { type: () => String }) id: string, @Args('dischargeDate', { type: () => Date}) dischargeDate: Date) {
+  scheduleDischarge(
+    @Args('id', { type: () => String }) id: string,
+    @Args('dischargeDate', { type: () => Date }) dischargeDate: Date,
+  ) {
     return this.patientService.markPatientForDischarge(id, dischargeDate);
   }
-
 }

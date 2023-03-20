@@ -1,103 +1,131 @@
 import { Optional } from '@nestjs/common';
 import { InputType, Int, Field } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsPhoneNumber, IsString, ValidateNested } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsPhoneNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { CreateNextOfKin } from 'src/user/dto/create-user.input';
 import { MaritalStatusEnum } from 'src/user/enum/maritalStatus.enum';
 import { AddressInput } from 'src/utils/dtos/address.dto';
 import { BloodGroupEnum } from 'src/utils/enums/bloodGroup.enum';
 import { GenotypeEnum } from 'src/utils/enums/genotype.enum';
 
-
 @InputType()
 export class CreatePatientInput {
   @IsString()
   @IsNotEmpty()
   @Field(() => String, { description: 'first name field (placeholder)' })
-  firstName: string
+  firstName: string;
 
   @IsString()
   @IsNotEmpty()
   @Field(() => String, { description: 'last name field (placeholder)' })
-  lastName: string
+  lastName: string;
 
-  @Field(() => String, { description: 'middle name field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'middle name field (placeholder)',
+    nullable: true,
+  })
   @Optional()
-  middleName?: string
+  middleName?: string;
 
   @IsString()
   @IsEmail()
   @IsNotEmpty()
-  @Field(() => String, { description: 'email field (placeholder)', nullable: true })
-  email?: string
+  @Field(() => String, {
+    description: 'email field (placeholder)',
+    nullable: true,
+  })
+  email?: string;
 
   @IsString()
   @IsPhoneNumber()
   @Optional()
-  @Field(() => String, { description: 'phone field (placeholder)', nullable: true })
-  phoneNumber?: string
+  @Field(() => String, {
+    description: 'phone field (placeholder)',
+    nullable: true,
+  })
+  phoneNumber?: string;
 
-  @Field(() => AddressInput, { description: 'permanent address status field (placeholder)', nullable: true })
+  @Field(() => AddressInput, {
+    description: 'permanent address status field (placeholder)',
+    nullable: true,
+  })
   @Type(() => AddressInput)
   @ValidateNested()
   @IsOptional()
   permanentAddress?: AddressInput;
 
-  @Field(() => AddressInput, { description: 'address status field (placeholder)', nullable: true })
+  @Field(() => AddressInput, {
+    description: 'address status field (placeholder)',
+    nullable: true,
+  })
   @Type(() => AddressInput)
   @ValidateNested()
   @IsOptional()
   residentialAddress?: AddressInput;
 
-  @Field(() => CreateNextOfKin, { description: 'account status field (placeholder)', nullable: true })
+  @Field(() => CreateNextOfKin, {
+    description: 'account status field (placeholder)',
+    nullable: true,
+  })
   @Type(() => CreateNextOfKin)
   @ValidateNested()
   @IsOptional()
   nextOfKin?: CreateNextOfKin;
 
-  @Field(() => CreateNextOfKin, { description: 'account status field (placeholder)', nullable: true })
+  @Field(() => CreateNextOfKin, {
+    description: 'account status field (placeholder)',
+    nullable: true,
+  })
   @Type(() => CreateNextOfKin)
   @ValidateNested()
   @IsOptional()
   payerDetails?: CreateNextOfKin;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  occupation: string
+  occupation: string;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  religion?: string
+  religion?: string;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  language?: string
+  language?: string;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  dateOfBirth?: string
+  dateOfBirth?: string;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  nationality?: string
+  nationality?: string;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsOptional()
   @IsEnum(GenotypeEnum)
-  genotype?: GenotypeEnum
+  genotype?: GenotypeEnum;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsOptional()
   @IsEnum(BloodGroupEnum)
-  bloodGroup?: BloodGroupEnum
+  bloodGroup?: BloodGroupEnum;
 
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   @IsOptional()
   @IsEnum(MaritalStatusEnum)
-  maritalStatus?: MaritalStatusEnum
+  maritalStatus?: MaritalStatusEnum;
 }

@@ -1,8 +1,18 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { AddressColumn, NextOfKinColumn } from '../../user/entities/user.entity';
+import {
+  AddressColumn,
+  NextOfKinColumn,
+} from '../../user/entities/user.entity';
 import { BloodGroupEnum } from '../../utils/enums/bloodGroup.enum';
 import { MaritalStatusEnum } from '../../user/enum/maritalStatus.enum';
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import { AdmissionStatusEnum } from '../enum/admission-status.enum';
 import { GenotypeEnum } from '../../utils/enums/genotype.enum';
 import { InvestigationEntity } from './investigation.entity';
@@ -24,7 +34,10 @@ export class Patient {
   @Column({ type: 'varchar', length: 255, nullable: false })
   lastName: string;
 
-  @Field(() => String, { description: 'middle name field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'middle name field (placeholder)',
+    nullable: true,
+  })
   @Column({ type: 'varchar', length: 255, nullable: true })
   middleName: string;
 
@@ -32,7 +45,10 @@ export class Patient {
   @Column({ type: 'varchar', length: 255, nullable: false })
   email: string;
 
-  @Field(() => String, { description: 'phone field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'phone field (placeholder)',
+    nullable: true,
+  })
   @Column({ type: 'varchar', length: 255, nullable: true })
   phoneNumber: string;
 
@@ -61,7 +77,11 @@ export class Patient {
   occupation: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: AdmissionStatusEnum, default: AdmissionStatusEnum.OUTPATIENT })
+  @Column({
+    type: 'enum',
+    enum: AdmissionStatusEnum,
+    default: AdmissionStatusEnum.OUTPATIENT,
+  })
   admissionStatus: AdmissionStatusEnum;
 
   @Field(() => String, { nullable: true })
@@ -96,23 +116,30 @@ export class Patient {
   @Column({ nullable: true })
   profilePicture: string;
 
-  @Field(() => String,  { nullable: true })
+  @Field(() => String, { nullable: true })
   @Column({ type: 'enum', enum: MaritalStatusEnum })
   maritalStatus: MaritalStatusEnum;
 
   @Field(() => [String], { nullable: true })
   @Column({ nullable: true, type: 'simple-array' })
-  dischargeDates: string[]
+  dischargeDates: string[];
 
   @Field(() => [String], { nullable: true })
   @Column({ nullable: true, type: 'simple-array' })
-  admissionDates: string[]
+  admissionDates: string[];
 
   @Field(() => [String], { nullable: true })
-  @OneToMany(() => InvestigationEntity, (investigations) => investigations.patient)
+  @OneToMany(
+    () => InvestigationEntity,
+    (investigations) => investigations.patient,
+  )
   investigations: InvestigationEntity[];
 
-  @OneToMany(() => PharmacyPrescription, (prescriptions) => prescriptions.patient, { nullable: true })
+  @OneToMany(
+    () => PharmacyPrescription,
+    (prescriptions) => prescriptions.patient,
+    { nullable: true },
+  )
   @Field(() => [PharmacyPrescription], { nullable: true })
   prescriptions: PharmacyPrescription[];
 
@@ -137,5 +164,4 @@ export class Patient {
     }
     return null;
   }
-
 }
