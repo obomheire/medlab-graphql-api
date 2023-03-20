@@ -1,0 +1,8 @@
+export enum AdmissionStatusEnum {
+  PENDING = 'PENDING',
+  ADMITTED = 'ADMITTED',
+  DISCHARGED = 'DISCHARGED',
+  OUTPATIENT = 'OUTPATIENT',
+  DEAD = 'DEAD',
+  EMERGENCY = 'EMERGENCY',
+}

@@ -1,0 +1,6 @@
+export enum FoodRelationEnum {
+    BEFORE_MEAL = 'BEFORE_MEAL',
+    AFTER_MEAL = 'AFTER_MEAL',
+    WITH_MEAL = 'WITH_MEAL',
+    EMPTY_STOMACH = 'EMPTY_STOMACH'
+}

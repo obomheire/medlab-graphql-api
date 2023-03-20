@@ -1,0 +1,844 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AddressColumn {
+  """city field (placeholder)"""
+  city: String
+
+  """country field (placeholder)"""
+  country: String
+
+  """state field (placeholder)"""
+  state: String
+
+  """address status field (placeholder)"""
+  street: String
+
+  """telephone field (placeholder)"""
+  telephone: String
+
+  """zip status field (placeholder)"""
+  zip: String
+}
+
+input AddressInput {
+  """address line 1 field (placeholder)"""
+  address: String
+
+  """city field (placeholder)"""
+  city: String
+
+  """country field (placeholder)"""
+  country: String
+
+  """state field (placeholder)"""
+  state: String
+
+  """address line 2 field (placeholder)"""
+  telephone: String
+
+  """pincode field (placeholder)"""
+  zipCode: String
+}
+
+type Allergy {
+  """allergen field (placeholder)"""
+  allergen: String!
+
+  """category field (placeholder)"""
+  category: String!
+
+  """level field (placeholder)"""
+  level: String
+
+  """reaction field (placeholder)"""
+  reaction: String!
+}
+
+type Appointment {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Assessment {
+  """assessment field (placeholder)"""
+  assessment: String
+
+  """note field (placeholder)"""
+  note: String
+
+  """plan field (placeholder)"""
+  plan: String
+}
+
+input AuthLoginInput {
+  email: String
+  password: String!
+  unique: String
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input CreateAppointmentInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateDesignationInput {
+  """description field (placeholder)"""
+  description: String
+
+  """name field (placeholder)"""
+  name: String!
+
+  """role field (placeholder)"""
+  role: String!
+}
+
+input CreateLaborataoryInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateNextOfKin {
+  """address status field (placeholder)"""
+  address: String
+
+  """permanent address status field (placeholder)"""
+  city: String
+
+  """address status field (placeholder)"""
+  country: String
+
+  """address status field (placeholder)"""
+  dateOfBirth: String
+
+  """email field (placeholder)"""
+  email: String
+
+  """first name field (placeholder)"""
+  firstName: String!
+
+  """last name field (placeholder)"""
+  lastName: String!
+
+  """middle name field (placeholder)"""
+  middleName: String
+
+  """phone number field (placeholder)"""
+  phoneNumber: String!
+
+  """address status field (placeholder)"""
+  relationship: String
+
+  """address status field (placeholder)"""
+  state: String
+
+  """address status field (placeholder)"""
+  zipCode: String
+}
+
+input CreatePatientInput {
+  bloodGroup: String
+  dateOfBirth: String
+
+  """email field (placeholder)"""
+  email: String
+
+  """first name field (placeholder)"""
+  firstName: String!
+  genotype: String
+  language: String
+
+  """last name field (placeholder)"""
+  lastName: String!
+  maritalStatus: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+  nationality: String
+
+  """account status field (placeholder)"""
+  nextOfKin: CreateNextOfKin
+  occupation: String
+
+  """account status field (placeholder)"""
+  payerDetails: CreateNextOfKin
+
+  """permanent address status field (placeholder)"""
+  permanentAddress: AddressInput
+
+  """phone field (placeholder)"""
+  phoneNumber: String
+  religion: String
+
+  """address status field (placeholder)"""
+  residentialAddress: AddressInput
+}
+
+input CreateRoleInput {
+  """description field (placeholder)"""
+  description: String
+
+  """name field (placeholder)"""
+  name: String!
+}
+
+input CreateUserInput {
+  """blood group field (placeholder)"""
+  bloodGroup: String
+
+  """date of birth field (placeholder)"""
+  dateOfBirth: DateTime
+
+  """role field (placeholder)"""
+  designation: String
+
+  """email field (placeholder)"""
+  email: String!
+
+  """first name field (placeholder)"""
+  firstName: String!
+
+  """gender status field (placeholder)"""
+  gender: String
+
+  """blood group field (placeholder)"""
+  genotype: String
+
+  """last name field (placeholder)"""
+  lastName: String!
+
+  """marital status field (placeholder)"""
+  maritalStatus: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+
+  """national"ity status field (placeholder)"""
+  nationality: String
+
+  """account status field (placeholder)"""
+  nextOfKin: CreateNextOfKin
+
+  """otp field (placeholder)"""
+  otp: String
+
+  """permanent address status field (placeholder)"""
+  permanentAddress: AddressInput
+
+  """phone number field (placeholder)"""
+  phoneNumber: String!
+
+  """profile picture status field (placeholder)"""
+  profilePicture: String
+
+  """religion status field (placeholder)"""
+  religion: String
+
+  """address status field (placeholder)"""
+  residentialAddress: AddressInput
+
+  """role field (placeholder)"""
+  role: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Designation {
+  """description field (placeholder)"""
+  description: String!
+
+  """id field (placeholder)"""
+  id: String!
+
+  """name field (placeholder)"""
+  name: String!
+
+  """role field (placeholder)"""
+  role: Role!
+
+  """user field (placeholder)"""
+  users: [User!]
+}
+
+type DoctorNote {
+  diagnosis: String
+
+  """note field (placeholder)"""
+  note: String
+  treatment: String
+}
+
+input FilterDto {
+  endDate: DateTime
+  limit: Float = 10
+  page: Float = 1
+  search: String = ""
+  sort: String
+  startDate: DateTime
+}
+
+input FirstLoginInput {
+  """confirmPassword field (placeholder)"""
+  confirmPassword: String!
+
+  """email field (placeholder)"""
+  email: String!
+
+  """confirmPassword field (placeholder)"""
+  newPassword: String!
+
+  """password field (placeholder)"""
+  password: String!
+}
+
+type HealthRecord {
+  """blood pressure field (placeholder)"""
+  bloodPressure: String
+
+  """diagnosis field (placeholder)"""
+  diagnosis: String
+
+  """genotype field (placeholder)"""
+  genotype: String
+
+  """blood gluocose field (placeholder)"""
+  glucose: Int
+
+  """heart rate field (placeholder)"""
+  heartRate: String
+
+  """height field (placeholder)"""
+  height: String
+
+  """note field (placeholder)"""
+  note: String
+  respiratoryRate: String
+
+  """temperature field (placeholder)"""
+  temperature: Int
+  treatment: String
+
+  """weight field (placeholder)"""
+  weight: String
+}
+
+type InvestigationEntity {
+  """date field (placeholder)"""
+  createdAt: DateTime!
+
+  """date field (placeholder)"""
+  doctor: String
+
+  """id field (placeholder)"""
+  id: String!
+  investigationStatus: String
+
+  """unit field (placeholder)"""
+  notes: String
+
+  """patient field (placeholder)"""
+  patient: String!
+  result: InvestigationResult
+
+  """date field (placeholder)"""
+  test: String!
+
+  """unit field (placeholder)"""
+  uniqueCode: String!
+
+  """date field (placeholder)"""
+  updatedAt: DateTime!
+
+  """patient field (placeholder)"""
+  visit: String!
+}
+
+type InvestigationResult {
+  """date field (placeholder)"""
+  doneAt: String
+
+  """date field (placeholder)"""
+  doneBy: String
+
+  """result field (placeholder)"""
+  testHeading: String
+
+  """date field (placeholder)"""
+  testParam: String
+
+  """date field (placeholder)"""
+  testRes: String
+}
+
+type Laborataory {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type LoginResponse {
+  accessToken: String!
+  refreshToken: String
+}
+
+type Mutation {
+  changePassword(input: ChangePasswordInput!): String!
+  changePasswordAtFirstLogin(input: FirstLoginInput!): String!
+  createAppointment(createAppointmentInput: CreateAppointmentInput!): Appointment!
+  createDesignation(createDesignationInput: CreateDesignationInput!): Designation!
+  createEmergencyPatient(createPatientInput: CreatePatientInput!): Patient!
+  createLaborataory(createLaborataoryInput: CreateLaborataoryInput!): Laborataory!
+  createPatient(createPatientInput: CreatePatientInput!): Patient!
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  createUser(createUserInput: CreateUserInput!): User!
+  deletePatient(id: String!): String!
+  deleteUser(id: String!): String!
+  forgotPassword(email: String!): String!
+  login(input: AuthLoginInput!): LoginResponse!
+  logout: String!
+  removeAppointment(id: Int!): Appointment!
+  removeDesignation(id: String!): String!
+  removeLaborataory(id: Int!): Laborataory!
+  removeRole(id: String!): String!
+  resetPassword(input: ResetPasswordInput!): String!
+  scheduleDischarge(dischargeDate: DateTime!, id: String!): Patient!
+  updateAppointment(updateAppointmentInput: UpdateAppointmentInput!): Appointment!
+  updateDesignation(id: String!, updateDesignationInput: UpdateDesignationInput!): Designation!
+  updateLaborataory(updateLaborataoryInput: UpdateLaborataoryInput!): Laborataory!
+  updatePatient(updatePatientInput: UpdatePatientInput!): Patient!
+  updateRole(id: String!, updateRoleInput: UpdateRoleInput!): Role!
+  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
+}
+
+type NextOfKinColumn {
+  """address status field (placeholder)"""
+  address: String
+
+  """country field (placeholder)"""
+  country: String
+  dateOfBirth: String!
+
+  """email field (placeholder)"""
+  email: String
+
+  """first name field (placeholder)"""
+  firstName: String
+
+  """last name field (placeholder)"""
+  lastName: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+
+  """phone number field (placeholder)"""
+  phoneNumber: String
+
+  """relationship field (placeholder)"""
+  relationship: String
+  state: String!
+
+  """zip code status field (placeholder)"""
+  zipCode: String
+}
+
+type Patient {
+  admissionDates: [String!]
+  admissionStatus: String!
+  bloodGroup: String
+  createdAt: DateTime!
+  dateOfBirth: String
+  dischargeDates: [String!]
+
+  """email field (placeholder)"""
+  email: String!
+
+  """first name field (placeholder)"""
+  firstName: String!
+  genotype: String
+
+  """Example field (placeholder)"""
+  id: String!
+  investigations: [String!]
+  language: String
+
+  """last name field (placeholder)"""
+  lastName: String!
+  maritalStatus: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+  nationality: String
+  nextOfKin: NextOfKinColumn
+  occupation: String
+  payerDetails: NextOfKinColumn
+  permanentAddress: AddressColumn
+
+  """phone field (placeholder)"""
+  phoneNumber: String
+  prescriptions: [PharmacyPrescription!]
+  profilePicture: String
+  reasonForDeath: String
+  religion: String
+  residentialAddress: AddressColumn
+  unique: String!
+  updatedAt: DateTime!
+  visits: [String!]
+}
+
+type PatientResponse {
+  count: Int
+  currentPage: Int
+  patients: [Patient!]
+  totalPages: Int
+}
+
+type PharmacyPrescription {
+  """date field (placeholder)"""
+  createdAt: DateTime!
+
+  """doctor field (placeholder)"""
+  doctor: String!
+
+  """id field (placeholder)"""
+  id: String!
+  isDispensed: Boolean
+  isPaid: Boolean
+  isRefill: Boolean
+  items: [PrescriptionUnit!]
+
+  """patient field (placeholder)"""
+  patient: String!
+  status: String!
+  totalCost: Int
+  uniqueCode: String!
+
+  """date field (placeholder)"""
+  updatedAt: DateTime!
+
+  """patient field (placeholder)"""
+  visit: String!
+}
+
+type PrescriptionUnit {
+  """duration field (placeholder)"""
+  duration: Int!
+
+  """unit field (placeholder)"""
+  frequency: String!
+
+  """strength field (placeholder)"""
+  notes: String!
+
+  """product field (placeholder)"""
+  product: String!
+
+  """quantity field (placeholder)"""
+  quantity: Int!
+
+  """route of admin (placeholder)"""
+  routeOfAdmin: String!
+}
+
+type Query {
+  appointment(id: Int!): Appointment!
+  designation(id: String!): Designation!
+  designations: [Designation!]!
+  emergencyPatients(filter: FilterDto! = {limit: 10, page: 1, search: ""}): [Patient!]!
+  laborataory(id: Int!): Laborataory!
+  patient(id: String!): Patient!
+  patients(filter: FilterDto! = {limit: 10, page: 1, search: ""}): PatientResponse!
+  role(id: String!, search: String): RoleReturnDto!
+  roles(search: String): [Role!]!
+  user(id: String!): User!
+  users(filter: FilterDto! = {limit: 10, page: 1, search: ""}): UserResponse!
+}
+
+type Recomendation {
+  """note field (placeholder)"""
+  note: String!
+
+  """recomendation field (placeholder)"""
+  recomendation: String!
+
+  """date field (placeholder)"""
+  recommender: String
+}
+
+input ResetPasswordInput {
+  confirmPassword: String!
+  password: String!
+  token: String!
+}
+
+type Role {
+  """created field (placeholder)"""
+  createdAt: DateTime!
+
+  """description field (placeholder)"""
+  description: String
+
+  """designation field (placeholder)"""
+  designations: [Designation!]
+
+  """id field (placeholder)"""
+  id: String!
+
+  """name field (placeholder)"""
+  name: String!
+
+  """updated field (placeholder)"""
+  updatedAt: DateTime!
+
+  """user field (placeholder)"""
+  users: [User!]
+}
+
+type RoleReturnDto {
+  """designation field (placeholder)"""
+  designations: [Designation!]
+
+  """name field (placeholder)"""
+  role: Role!
+}
+
+input UpdateAppointmentInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateDesignationInput {
+  """description field (placeholder)"""
+  description: String
+  id: String!
+
+  """name field (placeholder)"""
+  name: String
+
+  """role field (placeholder)"""
+  role: String
+}
+
+input UpdateLaborataoryInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdatePatientInput {
+  bloodGroup: String
+  dateOfBirth: String
+
+  """email field (placeholder)"""
+  email: String
+
+  """first name field (placeholder)"""
+  firstName: String
+  genotype: String
+  id: String
+  language: String
+
+  """last name field (placeholder)"""
+  lastName: String
+  maritalStatus: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+  nationality: String
+
+  """account status field (placeholder)"""
+  nextOfKin: CreateNextOfKin
+  occupation: String
+
+  """account status field (placeholder)"""
+  payerDetails: CreateNextOfKin
+
+  """permanent address status field (placeholder)"""
+  permanentAddress: AddressInput
+
+  """phone field (placeholder)"""
+  phoneNumber: String
+  religion: String
+
+  """address status field (placeholder)"""
+  residentialAddress: AddressInput
+}
+
+input UpdateRoleInput {
+  """description field (placeholder)"""
+  description: String
+  id: String!
+
+  """name field (placeholder)"""
+  name: String
+}
+
+input UpdateUserInput {
+  """blood group field (placeholder)"""
+  bloodGroup: String
+
+  """date of birth field (placeholder)"""
+  dateOfBirth: DateTime
+
+  """role field (placeholder)"""
+  designation: String
+
+  """email field (placeholder)"""
+  email: String
+
+  """first name field (placeholder)"""
+  firstName: String
+
+  """gender status field (placeholder)"""
+  gender: String
+
+  """blood group field (placeholder)"""
+  genotype: String
+
+  """id field (placeholder)"""
+  id: String
+
+  """last name field (placeholder)"""
+  lastName: String
+
+  """marital status field (placeholder)"""
+  maritalStatus: String
+
+  """middle name field (placeholder)"""
+  middleName: String
+
+  """national"ity status field (placeholder)"""
+  nationality: String
+
+  """account status field (placeholder)"""
+  nextOfKin: CreateNextOfKin
+
+  """otp field (placeholder)"""
+  otp: String
+
+  """permanent address status field (placeholder)"""
+  permanentAddress: AddressInput
+
+  """phone number field (placeholder)"""
+  phoneNumber: String
+
+  """profile picture status field (placeholder)"""
+  profilePicture: String
+
+  """religion status field (placeholder)"""
+  religion: String
+
+  """address status field (placeholder)"""
+  residentialAddress: AddressInput
+
+  """role field (placeholder)"""
+  role: String
+}
+
+type User {
+  accountStatus: String!
+
+  """blood group field (placeholder)"""
+  bloodGroup: String
+
+  """created at field (placeholder)"""
+  createdAt: DateTime!
+
+  """date of birth field (placeholder)"""
+  dateOfBirth: DateTime
+  designation: Designation
+
+  """email field (placeholder)"""
+  email: String!
+
+  """first name field (placeholder)"""
+  firstName: String!
+  gender: String
+
+  """genotype field (placeholder)"""
+  genotype: String
+
+  """id field (placeholder)"""
+  id: String!
+  investigations: [String!]
+  isFree: Boolean!
+
+  """last name field (placeholder)"""
+  lastName: String!
+  maritalStatus: String
+
+  """last name field (placeholder)"""
+  middleName: String
+  nationality: String
+  nextOfKin: NextOfKinColumn
+
+  """otp field (placeholder)"""
+  otp: String
+
+  """password field (placeholder)"""
+  password: String!
+  permanentAddress: AddressColumn
+
+  """phone number field (placeholder)"""
+  phoneNumber: String
+  prescriptions: [PharmacyPrescription!]
+  profilePicture: String
+  refreshToken: String
+  religion: String
+  residentialAddress: AddressColumn
+  role: Role!
+  unique: String!
+
+  """updated at field (placeholder)"""
+  updatedAt: DateTime!
+  visits: [Visit!]
+}
+
+type UserResponse {
+  count: Int
+  currentPage: Int
+  totalPages: Int
+  users: [User!]
+}
+
+type Visit {
+  """visit date field (placeholder)"""
+  allergy: [Allergy!]
+
+  """visit date field (placeholder)"""
+  assessmentLog: Assessment
+  createdAt: DateTime!
+
+  """doctor field (placeholder)"""
+  doctor: String!
+
+  """visit date field (placeholder)"""
+  doctorNote: DoctorNote
+
+  """id field (placeholder)"""
+  id: String!
+  investigations: [String!]
+
+  """patient field (placeholder)"""
+  patient: String!
+  prescriptions: [String!]
+
+  """visit date field (placeholder)"""
+  recommendation: Recomendation
+  uniqueCode: String!
+  updatedAt: String!
+
+  """visit note field (placeholder)"""
+  visitNote: String
+
+  """health record field (placeholder)"""
+  vitalSigns: HealthRecord
+}
