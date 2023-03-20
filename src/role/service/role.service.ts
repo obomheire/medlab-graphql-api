@@ -9,14 +9,15 @@ import { Role } from '../entities/role.entity';
 
 @Injectable()
 export class RoleService {
-  constructor(@InjectRepository(Role) private readonly roleRepository: Repository<Role> ) {}
+  constructor(
+    @InjectRepository(Role) private readonly roleRepository: Repository<Role>,
+  ) {}
 
   async create(createRoleInput: CreateRoleInput): Promise<Role> {
     try {
       const role = this.roleRepository.create(createRoleInput);
       return await this.roleRepository.save(role);
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
@@ -26,27 +27,32 @@ export class RoleService {
     try {
       if (search) {
         const roles = await this.roleRepository.find();
-        const filteredRoles = roles.filter(role => role.name.toLowerCase().includes(search.toLowerCase()));
+        const filteredRoles = roles.filter((role) =>
+          role.name.toLowerCase().includes(search.toLowerCase()),
+        );
         return filteredRoles;
       }
       return await this.roleRepository.find();
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
 
   async findOne(id: string, search?: string): Promise<RoleReturnDto> {
     try {
-      const role = await this.roleRepository.findOneOrFail({ where: { id }, relations: [ 'designations' ] });
+      const role = await this.roleRepository.findOneOrFail({
+        where: { id },
+        relations: ['designations'],
+      });
       const designations = role.designations;
-        if (search) {
-          const filteredDesignations = designations.filter(designation => designation.name.toLowerCase().includes(search.toLowerCase()));
-          return {designations: filteredDesignations, role}
-        }
-        return {designations, role};
-    }
-    catch (error) {
+      if (search) {
+        const filteredDesignations = designations.filter((designation) =>
+          designation.name.toLowerCase().includes(search.toLowerCase()),
+        );
+        return { designations: filteredDesignations, role };
+      }
+      return { designations, role };
+    } catch (error) {
       throw error;
     }
   }
@@ -60,8 +66,7 @@ export class RoleService {
         role.name = updateRoleInput.name;
         return await this.roleRepository.save(role);
       }
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
@@ -95,11 +100,8 @@ export class RoleService {
         await this.roleRepository.delete(id);
         return 'Role deleted successfully';
       }
-    }
-    catch (error) {
+    } catch (error) {
       throw error;
     }
   }
-
-
 }
