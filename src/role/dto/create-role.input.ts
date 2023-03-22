@@ -8,7 +8,10 @@ export class CreateRoleInput {
   @IsNotEmpty()
   name: string;
 
-  @Field(() => String, { description: 'description field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'description field (placeholder)',
+    nullable: true,
+  })
   @IsString()
   @IsOptional()
   description?: string;

@@ -15,19 +15,34 @@ import { Visit } from './visit.entity';
 
 @ObjectType()
 export class InvestigationResult {
-  @Field(() => String, { description: 'result field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'result field (placeholder)',
+    nullable: true,
+  })
   testHeading: string;
 
-  @Field(() => String, { description: 'date field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'date field (placeholder)',
+    nullable: true,
+  })
   testParam: string;
 
-  @Field(() => String, { description: 'date field (placeholder)', nullable: true })
+  @Field(() => String, {
+    description: 'date field (placeholder)',
+    nullable: true,
+  })
   testRes: string;
 
-  @Field(() => String, { description: 'date field (placeholder)',  nullable: true })
+  @Field(() => String, {
+    description: 'date field (placeholder)',
+    nullable: true,
+  })
   doneBy: User;
 
-  @Field(() => String, { description: 'date field (placeholder)',  nullable: true })
+  @Field(() => String, {
+    description: 'date field (placeholder)',
+    nullable: true,
+  })
   doneAt: Date;
 }
 
@@ -78,7 +93,12 @@ export class InvestigationEntity {
   //   referenceRange: string | null;
 
   @Field(() => String, { nullable: true })
-  @Column({ type: 'enum', name: 'status', enum: InvestigationStatusEnum, default: InvestigationStatusEnum.PENDING })
+  @Column({
+    type: 'enum',
+    name: 'status',
+    enum: InvestigationStatusEnum,
+    default: InvestigationStatusEnum.PENDING,
+  })
   investigationStatus: InvestigationStatusEnum;
 
   @Field(() => InvestigationResult, { nullable: true })

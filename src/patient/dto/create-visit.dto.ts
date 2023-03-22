@@ -263,7 +263,6 @@ export class CreateVisitInput {
 
 @InputType()
 export class UpdateVisitInput extends PartialType(CreateVisitInput) {
-  @Field(() => String, { nullable: true})
+  @Field(() => String, { nullable: true })
   id: string;
 }
-

@@ -3,6 +3,6 @@ import { AppointmentService } from './appointment.service';
 import { AppointmentResolver } from './appointment.resolver';
 
 @Module({
-  providers: [AppointmentResolver, AppointmentService]
+  providers: [AppointmentResolver, AppointmentService],
 })
 export class AppointmentModule {}
