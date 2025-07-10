@@ -2,249 +2,827 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type AddressColumn {
-  """city field (placeholder)"""
-  city: String
-
-  """country field (placeholder)"""
-  country: String
-
-  """state field (placeholder)"""
-  state: String
-
-  """address status field (placeholder)"""
-  street: String
-
-  """telephone field (placeholder)"""
-  telephone: String
-
-  """zip status field (placeholder)"""
-  zip: String
-}
-
-input AddressInput {
-  """address line 1 field (placeholder)"""
-  address: String
-
-  """city field (placeholder)"""
-  city: String
-
-  """country field (placeholder)"""
-  country: String
-
-  """state field (placeholder)"""
-  state: String
-
-  """address line 2 field (placeholder)"""
-  telephone: String
-
-  """pincode field (placeholder)"""
-  zipCode: String
-}
-
-type Allergy {
-  """allergen field (placeholder)"""
-  allergen: String!
-
-  """category field (placeholder)"""
-  category: String!
-
-  """level field (placeholder)"""
-  level: String
-
-  """reaction field (placeholder)"""
-  reaction: String!
-}
-
-type Appointment {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Assessment {
-  """assessment field (placeholder)"""
-  assessment: String
-
-  """note field (placeholder)"""
-  note: String
-
-  """plan field (placeholder)"""
-  plan: String
-}
-
-input AuthLoginInput {
-  email: String
-  password: String!
-  unique: String
-}
-
-input ChangePasswordInput {
-  newPassword: String!
-  oldPassword: String!
-}
-
-input CreateAppointmentInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input CreateDesignationInput {
-  """description field (placeholder)"""
-  description: String
-
-  """name field (placeholder)"""
+input AIAvatarInput {
+  ethnicity: String
+  gender: String!
+  image: String!
   name: String!
-
-  """role field (placeholder)"""
-  role: String!
+  status: Boolean = true
+  voiceId: String
 }
 
-input CreateLaborataoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input CreateNextOfKin {
-  """address status field (placeholder)"""
-  address: String
-
-  """permanent address status field (placeholder)"""
-  city: String
-
-  """address status field (placeholder)"""
-  country: String
-
-  """address status field (placeholder)"""
-  dateOfBirth: String
-
-  """email field (placeholder)"""
-  email: String
-
-  """first name field (placeholder)"""
-  firstName: String!
-
-  """last name field (placeholder)"""
-  lastName: String!
-
-  """middle name field (placeholder)"""
-  middleName: String
-
-  """phone number field (placeholder)"""
-  phoneNumber: String!
-
-  """address status field (placeholder)"""
-  relationship: String
-
-  """address status field (placeholder)"""
-  state: String
-
-  """address status field (placeholder)"""
-  zipCode: String
-}
-
-input CreatePatientInput {
-  bloodGroup: String
-  dateOfBirth: String
-
-  """email field (placeholder)"""
-  email: String
-
-  """first name field (placeholder)"""
-  firstName: String!
-  genotype: String
-  language: String
-
-  """last name field (placeholder)"""
-  lastName: String!
-  maritalStatus: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-  nationality: String
-
-  """account status field (placeholder)"""
-  nextOfKin: CreateNextOfKin
-  occupation: String
-
-  """account status field (placeholder)"""
-  payerDetails: CreateNextOfKin
-
-  """permanent address status field (placeholder)"""
-  permanentAddress: AddressInput
-
-  """phone field (placeholder)"""
-  phoneNumber: String
-  religion: String
-
-  """address status field (placeholder)"""
-  residentialAddress: AddressInput
-}
-
-input CreateRoleInput {
-  """description field (placeholder)"""
-  description: String
-
-  """name field (placeholder)"""
-  name: String!
-}
-
-input CreateUserInput {
-  """blood group field (placeholder)"""
-  bloodGroup: String
-
-  """date of birth field (placeholder)"""
-  dateOfBirth: DateTime
-
-  """role field (placeholder)"""
-  designation: String
-
-  """email field (placeholder)"""
-  email: String!
-
-  """first name field (placeholder)"""
-  firstName: String!
-
-  """gender status field (placeholder)"""
+input AIAvatarUpdateInput {
+  avartUUID: String!
+  ethnicity: String
   gender: String
+  image: String
+  name: String
+  status: Boolean = true
+  voiceId: String
+}
 
-  """blood group field (placeholder)"""
-  genotype: String
-
-  """last name field (placeholder)"""
-  lastName: String!
-
-  """marital status field (placeholder)"""
-  maritalStatus: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-
-  """national"ity status field (placeholder)"""
-  nationality: String
-
-  """account status field (placeholder)"""
-  nextOfKin: CreateNextOfKin
-
-  """otp field (placeholder)"""
-  otp: String
-
-  """permanent address status field (placeholder)"""
-  permanentAddress: AddressInput
-
-  """phone number field (placeholder)"""
-  phoneNumber: String!
-
-  """profile picture status field (placeholder)"""
-  profilePicture: String
-
-  """religion status field (placeholder)"""
-  religion: String
-
-  """address status field (placeholder)"""
-  residentialAddress: AddressInput
-
-  """role field (placeholder)"""
+input AICharacter {
+  bio: String
+  catchPhrase: String
+  name: String!
+  persona: String
+  quirks: String
   role: String!
+}
+
+type AICharacterEntityType {
+  bio: String
+  catchPhrase: String
+  gender: String
+  image: String
+  name: String!
+  persona: String
+  quirks: String
+  role: String!
+  voiceId: String
+}
+
+input AICharacterInput {
+  bio: String
+  catchPhrase: String
+  gender: String
+  image: String
+  name: String!
+  persona: String
+  quirks: String
+  role: String! = "Panelist"
+  voiceId: String
+}
+
+type AICharacterResType {
+  bio: String
+  catchPhrase: String
+  image: String
+  name: String!
+  persona: String
+  quirks: String
+  role: String
+}
+
+input AIFeedbackInput {
+  """Accepts: SHORT_CASE, LONG_CASE"""
+  caseType: String!
+  conversationUUID: String!
+  threadId: String!
+}
+
+type AIGeneratedEpisodeOutlineRes {
+  episode: Float!
+  outline: [String!]!
+  title: String!
+}
+
+type AIcredit {
+  fourMonths: Float!
+  monthly: Float!
+}
+
+type AIfeedbackRes {
+  aiFeedback: String
+  threadId: String
+}
+
+input AIgradingInput {
+  """Accepts: Case 1, Case 2, Case 3, etc."""
+  caseNo: String!
+
+  """Accepts: SHORT_CASE, LONG_CASE"""
+  caseType: String!
+  conversationUUID: String!
+  isTrial: Boolean = false
+}
+
+type AIgradingRes {
+  aiGrading: JSON
+  threadId: String
+}
+
+input AInfoInp {
+  image: String
+  text: String!
+}
+
+input AddChatEpisodesInput {
+  eventNames: [String!]
+  simulationUUID: String
+}
+
+input AddCusCatInput {
+  customCat: String!
+}
+
+type AddInfo {
+  type: String
+  value: AddInfoValue
+}
+
+input AddInfoInp {
+  type: String
+  value: AInfoInp
+}
+
+type AddInfoValue {
+  image: String
+  text: String
+}
+
+input AddPresQuestion {
+  answer: [String!]!
+  answer_details: String
+  imageUrls: [String!]
+  options: [String!]
+  presQuestionUUID: String
+  question: String!
+  reference: String
+  subtopic: String
+  topic: String
+}
+
+input AddQuestion {
+  answer: String!
+  answer_details: String
+  imageUrls: [String!]
+  options: [String!]!
+  question: String!
+  reference: String
+  subtopic: String
+  topic: String
+}
+
+input AddQuestionInput {
+  questions: [AddQuestion!]!
+  quizUUID: String!
+}
+
+input AddShortCaseTemplateInput {
+  category: String!
+  templateName: String!
+  title: String!
+}
+
+input AddTemplateCaseInput {
+  category: String!
+  templateName: String!
+}
+
+input AddTutorialSectionQuizDto {
+  category: String!
+  quizzes: [TutorialQuizDto!]
+  sectionTitle: String!
+}
+
+input AgentsInp {
+  agentIds: [String!]!
+}
+
+type AllCategoriesRes {
+  presentations: [PlaygroundPresentationEntity!]
+  subCategory: String
+  topic: String
+}
+
+type AllDriveARes {
+  drive: [DriveDemo!]!
+  pagination: Pagination!
+}
+
+input Ans {
+  answer: String!
+  answer_details: String
+  id: String!
+  reference: String
+}
+
+type Answer {
+  answer: String!
+  answer_details: String
+  id: String!
+  reference: String
+}
+
+type AppRes {
+  message: String!
+  status: String!
+}
+
+input AskQuestionInput {
+  options: [OptionInput!]
+  progress: Float = 0
+  question: String
+  userResponse: String
+}
+
+type AskQuestionRes {
+  options: [OptionType!]
+  progress: Float!
+  question: String!
+  userResponse: String!
+}
+
+type AssistantRes {
+  data: JSON
+  fileId: String
+  message: String
+  messageId: String
+  metadata: Meta
+  role: String
+  script: JSON
+  slides: JSON
+  theme: String
+  threadId: String
+}
+
+type AssistantVSRes {
+  fileIds: [String!]
+  vs_id: String
+}
+
+input BuyCreditDto {
+  amount: Float!
+  email: String!
+  paymentMethodId: String
+}
+
+type CalculateRankingRes {
+  userRanking: Float
+}
+
+input CancelPaymentDto {
+  cancelReason: String
+  paymentId: String!
+}
+
+type CaseEntity {
+  caseId: String!
+  caseUUID: String!
+  details: String!
+  images: [Image!]
+  keywords: String
+  level: Float!
+  subject: String
+  totalQuestion: Float!
+}
+
+input CasePromptInput {
+  level: Float!
+  prompt: String
+  threadId: String
+}
+
+type CasePromptRes {
+  caseDetails: String
+  keywords: String
+  level: Float
+  questions: [PromptCaseRes!]
+  subject: String
+  threadId: String
+  totalQuestion: Float
+}
+
+type CaseResult {
+  averageSpeed: Float!
+  levels: Level
+  repeats: Float
+}
+
+type ChannelHomeFeedRes {
+  category: RandomCategoryType
+  liveEpisode: [RecentType!]
+  next_discovery: [NextDiscoveryType!]
+  recent: [RecentType!]
+  suggested: [RecentType!]
+}
+
+input ChannelInput {
+  categoryName: String!
+  coverImage: String
+
+  """Description to category name"""
+  description: String
+
+  """Channel name"""
+  name: String!
+}
+
+type ChannelType {
+  channelCoverImage: String
+  channelDescription: String
+  channelName: String!
+  channelUUID: String!
+  isLive: Boolean!
+}
+
+input ChannelUpdateInput {
+  categoryName: String
+  channelUUID: String!
+  coverImage: String
+
+  """Description to category name"""
+  description: String
+
+  """Channel name"""
+  name: String
+}
+
+type ChannelsEpisodeRes {
+  episodes: [ChannelsEpisodeType!]
+  pagination: Pagination!
+}
+
+type ChannelsEpisodeType {
+  episode: String!
+  episodeTitle: String!
+  episodeUUID: String!
+  eventCoverImage: String
+  eventDescription: String
+  eventName: String!
+  fileUrl: String
+  joinCode: String
+  scheduled: DateTime!
+  status: String!
+}
+
+type ChannelsEventsType {
+  channelName: String!
+  eventCoverImage: String
+  eventDescription: String
+  eventName: String!
+  eventUUID: String!
+}
+
+type ChatAIAvatarEntity {
+  avatarUUID: String!
+  ethnicity: String
+  gender: String
+  image: String!
+  name: String!
+  status: String
+  voiceId: String
+}
+
+type ChatAIRolesEntity {
+  role: String!
+  roleUUID: String!
+}
+
+input ChatAssInput {
+  prompt: String
+}
+
+type ChatCategoryEntity {
+  categoryUUID: String!
+  channels: [ChatChannelEntity!]
+  name: String!
+}
+
+type ChatCategoryRes {
+  categoryUUID: String!
+  channels: [ChatChannelRes!]!
+  name: String!
+}
+
+type ChatChannelEntity {
+  categoryName: String!
+  channelUUID: String!
+  coverImage: String
+  description: String
+  events: [ChatEventEntity!]
+  name: String!
+}
+
+type ChatChannelRes {
+  categoryName: String
+  channelUUID: String!
+  coverImage: String
+  description: String
+  name: String!
+}
+
+type ChatEpisodeEntity {
+  audioSize: Float
+  comments: [QAndAType!]
+  completedSimulation: [ConvertSimulationType!]
+  description: String
+  duration: Float
+  episode: String
+  episodeOutline: String
+  episodeTitle: String
+  episodeTopics: [String!]
+  episodeUUID: String!
+  eventCoverImage: String
+  eventName: String!
+  fileUrl: String
+  isUploaded: Boolean
+  joinCode: String
+  noOfViews: Float
+  poll: [SimulationPoll!]
+  privateChat: [PrivateChatType!]
+  qa: [QAndAType!]
+  quiz: [SimulationQuiz!]
+  scheduled: DateTime!
+  scheduledType: String!
+  simulation: String!
+  status: String!
+  threadId: String
+  userSimulation: [ConvertSimulationType!]
+}
+
+input ChatEpisodeInput {
+  content: [EpisodeContent!]!
+  eventName: String!
+  noOfEpisodes: Float! = 1
+}
+
+type ChatEpisodeRes {
+  episodes: [ChatEpisodeEntity!]!
+  pagination: Pagination!
+}
+
+input ChatEpisodeUpdateInput {
+  episodeOutline: String
+  episodeTitle: String
+  episodeTopics: [String!]
+  eventName: String
+  scheduled: DateTime
+  scheduledType: String
+  status: String
+}
+
+type ChatEpisodeWithProgress {
+  audioSize: Float
+  comments: [QAndAType!]
+  completedSimulation: [ConvertSimulationType!]
+  description: String
+  duration: Float
+  episode: String
+  episodeOutline: String
+  episodeTitle: String
+  episodeTopics: [String!]
+  episodeUUID: String!
+  eventCoverImage: String
+  eventName: String!
+  fileUrl: String
+  isUploaded: Boolean
+  joinCode: String
+  noOfViews: Float
+  poll: [SimulationPoll!]
+  privateChat: [PrivateChatType!]
+  progress: Float!
+  qa: [QAndAType!]
+  quiz: [SimulationQuiz!]
+  scheduled: DateTime!
+  scheduledType: String!
+  simulation: String!
+  status: String!
+  threadId: String
+  userSimulation: [ConvertSimulationType!]
+}
+
+type ChatEventEntity {
+  QandA: Boolean
+  aiCharacters: [AICharacterEntityType!]
+  channelName: String
+  coverImage: String
+  description: String
+  draft: Boolean
+  duration: String
+  episodes: [ChatEpisodeEntity!]
+  eventTemplateContent: String
+  eventTemplateUrl: String
+  eventUUID: String
+  masterOutline: String
+  masterOutlineThreadId: String
+  name: String
+  noOfActors: Float
+  noOfPanelist: Float
+  noOfPolls: Float
+  noOfQuestions: Float
+  poll: Boolean
+  pollType: String
+  quiz: Boolean
+  quizType: String
+  scheduled: DateTime
+  scheduledType: String
+  wordCount: Float
+}
+
+type ChatMobileExporeChannelRes {
+  coverImage: String
+  description: String
+  name: String!
+}
+
+input ClinExStripeProdDto {
+  amount4Months: Float!
+  amountMonthly: Float!
+  productName: String!
+}
+
+type ClinExSub {
+  isActive: Boolean
+  isTrialLC: Boolean
+  isTrialPeriod: Boolean
+  isTrialSC: Boolean
+  plan: String
+  subCredits: Float
+  tokenBalance: Float
+  topUpCredits: Float
+}
+
+type ClinExamProdEntity {
+  aiCredit: AIcredit!
+  aiFeedback: String!
+  aiLCPractice: Boolean!
+  aiSCPractice: Boolean!
+  clinExProdUUID: String!
+  examOverview: Boolean!
+  lcTemplate: String!
+  name: String!
+  onlineTutor: String!
+  price: Price!
+  recordCasePres: String!
+  scTemplate: String!
+  stripeProduct: ClinExamProduct
+}
+
+type ClinExamProduct {
+  fourMonthsPriceId: String
+  monthlyPriceId: String
+  stripeProductId: String
+}
+
+type ClinicalExamEntity {
+  about: String!
+  amount: Float!
+  description: String
+  examUUID: String!
+  image: String
+  markingScheme: String!
+  name: String!
+  sampleQuestion: SampleQues!
+}
+
+type ClinicalExamTutorialEntity {
+  category: String!
+  coverImage: String
+  isUpcoming: Boolean
+  order: String
+  quiz: [TutorialSectionQuiz!]
+  section: [TutorialSectionType!]!
+  sectionTitle: String!
+  tutorialUUID: String!
+  upcomingTutDate: DateTime
+  upcomingTutDuration: String
+}
+
+type ClinicialSubspecialtyRes {
+  coverImage: String
+  subspecialty: String
+  totalNumber: Int
+}
+
+input ConfigPresInput {
+  additionalPrompt: String
+  aiModel: String = "OpenAI"
+  audience: String
+  goals: String
+  isEmbed: Boolean
+  isUploadType: Boolean
+  noOfSlide: Float
+  outline: String
+
+  """
+  Accepted enum type PRESENTATION_OUTLINE, PRESENTATION_NOTE, PRESENTATION_SLIDE or PRESENTATION_SCRIPT
+  """
+  presPromptType: String!
+  subtitle: String
+  theme: String
+  threadId: String
+  title: String
+  vignettes: String
+}
+
+input ContactUsInput {
+  email: String!
+  firstName: String!
+  message: String!
+  phoneNumber: String!
+}
+
+type ConvExaminer {
+  agentId: String!
+  conversationId: String!
+}
+
+input ConvExaminerInput {
+  agentId: String!
+  conversationId: String!
+}
+
+type ConvExaminers {
+  examiner1: ConvExaminer!
+  examiner2: ConvExaminer!
+}
+
+input ConvExaminersInp {
+  examiner1: ConvExaminerInput!
+  examiner2: ConvExaminerInput!
+}
+
+type ConversationEntity {
+  aiFeedback: String
+  aiGrading: JSON
+  comment: String
+  conversationUUID: String!
+  examiners: ConvExaminers
+  note: String
+  patientAgentId: String
+  practCaseCatId: PractCaseCatEntity!
+  selfGrading: JSON
+  threadId: String
+  transcript: String
+  userId: UserEntity!
+}
+
+type ConvertSimulationRes {
+  conversation: String
+  gender: String
+  image: String
+  name: String
+  read: Boolean
+  time: String
+}
+
+type ConvertSimulationType {
+  conversation: String
+  gender: String
+  image: String
+  name: String
+  read: Boolean
+  time: String
+}
+
+type Cost {
+  monthly: Float!
+  payPerUse: Float
+  yearly: Float!
+}
+
+input CostInput {
+  monthly: Float!
+  payPerUse: Float
+  yearly: Float!
+}
+
+type Country {
+  code: String
+  country: String
+}
+
+input CreateAgentInp {
+  agentName: String!
+  fileIds: [FileInp!]!
+  firstMessage: String!
+  isExaminer2: Boolean
+  voiceId: String!
+}
+
+type CreateAsstRes {
+  assistantId: String
+}
+
+input CreateCaseInput {
+  details: String!
+  images: [ImageObj!]! = []
+  keywords: String
+  level: Float!
+  subject: String
+}
+
+input CreateClinExProdInput {
+  aiCredit: TokensInput!
+  aiFeedback: String!
+  aiLCPractice: Boolean!
+  aiSCPractice: Boolean!
+  examOverview: Boolean!
+  lcTemplate: String!
+  name: String!
+  onlineTutor: String!
+  price: PriseInput!
+  recordCasePres: String!
+  scTemplate: String!
+}
+
+input CreateFeaturedInput {
+  category: String
+  color: String!
+  description: String!
+  image: String!
+  isGuest: Boolean
+  quizUUID: String
+  route: String!
+  title: String!
+}
+
+input CreateOpenEndedQuesInput {
+  condition: String
+  questionNo: Float = 300
+  questionType: String
+  specialty: String
+  subspecialty: String
+}
+
+input CreateOpenEndedQuizAIInput {
+  aiAssist: OpenEndedWithAIInput
+  isMedScroll: Boolean
+  quiz: CreateQuizInput
+}
+
+input CreatePlaygroundPresCategoryDto {
+  category: String!
+  topic: String
+}
+
+input CreateProductInput {
+  amount: CostInput!
+  casePresentation: String!
+  caseRecall: String!
+  credits: String!
+  generalTrivia: Boolean!
+  medicalTrivia: Boolean!
+  medsynopsis: String!
+  multiplayerCapacity: String!
+  plan: String!
+  quizAI: String!
+  storage: String!
+  tokenTopUp: TopUpInput!
+}
+
+input CreateQuizInput {
+  description: String!
+  duration: String!
+  point: Float!
+
+  """
+  Expected: Open ended short and long form, True or False or Multiple choice
+  """
+  questionType: String
+  quizCategory: String!
+
+  """Expected: count down per question or all time"""
+  timer: String
+  topic: String!
+}
+
+input CreateSlideProductInput {
+  accessToTemplateDesigns: Boolean!
+  aiAssistanceWithSlideCreation: Boolean!
+  aiCredits: Float!
+  name: String!
+  price: CostInput!
+  slideSharing: Boolean!
+}
+
+input CreateTemplateCategoryInput {
+  description: String
+  icon: String
+  image: String
+  name: String!
+}
+
+type CreateTemplateCategoryRes {
+  categoryUUID: String
+  description: String
+  icon: String
+  image: String
+  name: String!
+}
+
+type CreateTemplateRes {
+  category: String!
+  templateUUID: String!
+}
+
+input CreditUserInput {
+  amount: Float!
+
+  """Expected: MEDSCROLL or MEDSCROLL_SLIDE (default: MEDSCROLL)"""
+  app: String
+  email: String!
+}
+
+type CustomCat {
+  customCat: String
+  customCatId: String
+}
+
+type DataRes {
+  data: JSON!
 }
 
 """
@@ -252,593 +830,3214 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Designation {
-  """description field (placeholder)"""
-  description: String!
-
-  """id field (placeholder)"""
-  id: String!
-
-  """name field (placeholder)"""
-  name: String!
-
-  """role field (placeholder)"""
-  role: Role!
-
-  """user field (placeholder)"""
-  users: [User!]
+input DeleteQsImagesInput {
+  imageUrls: [String!]!
+  questionUUID: String
 }
 
-type DoctorNote {
-  diagnosis: String
+input DemoUpdateEpisode {
+  episodeUUID: String!
+  scheduledDate: String!
+}
 
-  """note field (placeholder)"""
+type Disabled {
+  dateDisabled: DateTime
+  isDisabled: Boolean
+}
+
+type Drive {
+  description: String
+  fileUrl: String
+  questions: [String!]
+  threadId: String
+  transcript: String
+  userPrompt: String
+}
+
+type DriveData {
+  component: String!
+  content: Drive!
+  driveUUID: String!
+}
+
+type DriveDemo {
+  component: String
+  content: Drive!
+  dateCreated: String
+  driveUUID: String
+}
+
+type DriveTitleCat {
+  data: [DriveData!]!
+  title: String
+}
+
+type DriveTitleCatRes {
+  drive: [DriveTitleCat!]!
+  pagination: Pagination!
+}
+
+input EditProfileInput {
+  country: String
+  countryCode: String
+  email: String
+  firstName: String!
+  lastName: String
+  role: String
+  specialty: String
+  state_city: String
+  subspecialty: String
+  username: String!
+}
+
+input EndExaminer2Inp {
+  conversationUUID: String!
+  examiners: ConvExaminersInp!
   note: String
-  treatment: String
+  patientConversId: String!
 }
 
-input FilterDto {
-  endDate: DateTime
-  limit: Float = 10
-  page: Float = 1
-  search: String = ""
-  sort: String
-  startDate: DateTime
+type EngagementEntity {
+  category: String!
+  commentUUID: String!
+  engagementType: String!
+  image: String
+  inviteCode: String
+  isAI: Boolean
+  likes: Float!
+  message: String!
+  messageThread: String
+  parentId: String
+  replies: [EngagementEntity!]!
+  sender: String!
+  usersLikes: [String!]!
 }
 
-input FirstLoginInput {
-  """confirmPassword field (placeholder)"""
-  confirmPassword: String!
+input EpisodeContent {
+  description: String
+  episode: String!
+  title: String!
+  topic: [String!]!
+}
 
-  """email field (placeholder)"""
+type EventCurrentEpisodeType {
+  episode: String
+  episodeUUID: String
+  publishedDate: DateTime
+  status: String
+  title: String
+}
+
+type EventEpisodeType {
+  episode: String
+  episodeUUID: String
+  publishedDate: DateTime
+  status: String
+  title: String
+  topics: [String!]
+}
+
+input EventInput {
+  aiCharacters: [AICharacterInput!]
+  channelName: String
+  description: String
+  duration: String
+  name: String
+  noOfActors: Float
+  noOfPanelist: Float
+  noOfPolls: Float = 1
+  noOfQuestions: Float = 1
+  poll: Boolean = false
+  pollType: String = "MULTICHOICE"
+  quiz: Boolean = false
+  quizType: String = "MULTICHOICE"
+  scheduled: DateTime
+  scheduledType: String = "Daily"
+}
+
+input EventUpdateInput {
+  aiCharacters: [AICharacterInput!]
+  channelName: String
+  description: String
+  duration: String
+  eventUUID: String!
+  name: String
+  noOfActors: Float
+  noOfPanelist: Float
+  noOfPolls: Float = 1
+  noOfQuestions: Float = 1
+  poll: Boolean = false
+  pollType: String = "MULTICHOICE"
+  quiz: Boolean = false
+  quizType: String = "MULTICHOICE"
+  scheduled: DateTime
+  scheduledType: String = "Daily"
+}
+
+input ExamPrepConfigDto {
+  additionalInfo: String
+  examCurriculumLinkOrText: String
+  examDate: String
+  examKnowledgeLevel: String
+  examName: String!
+  sampleQuestions: String
+}
+
+type Examiner {
+  agentId: String!
+  gender: String!
+  image: String!
+  name: String!
+  voice: String!
+}
+
+input ExaminerInp {
+  agentId: String!
+  gender: String!
+  image: String!
+  name: String!
+  voice: String!
+}
+
+input ExaminerInput {
+  examiner1: ExaminerInp!
+  examiner2: ExaminerInp!
+}
+
+type Examiners {
+  examiner1: Examiner!
+  examiner2: Examiner!
+}
+
+type FaqEntity {
+  answer: String
+  faqUUID: String!
+  question: String!
+}
+
+type FeaturedEntity {
+  category: String
+  color: String!
+  description: String!
+  featureUUID: String!
+  image: String!
+  isGuest: Boolean
+  quizUUID: String
+  route: String!
+  title: String!
+}
+
+input FileInp {
+  fileId: String!
+  fileName: String!
+}
+
+type FileSeach {
+  vector_store_ids: [String!]
+}
+
+type FilesUploadRes {
+  filesUrl: [String!]
+}
+
+input GameInput {
+  isMedQues: Medscroll
+  questionUUIDs: [String!]
+  topic: String!
+  totalQuestion: Float
+}
+
+type GameRes {
+  inviteCode: String
+}
+
+input GenImageInput {
+  imageNo: Float
+  prompt: String!
+}
+
+type GenerateOpenEndedQuesRes {
+  answer: OpenEndedAnswer!
+  caseUUID: String
+  category: String
+  comments: String
+  duration: Float
+  images: [String!]
+  keywords: String
+  level: Float
+  mode: String
+  options: [Option!]!
+  point: Float
+  presentedTo: [String!]
+  question: String!
+  questionNumber: Float
+  questionUUID: String
+  quizCategoryId: String
+  quizUUID: String
+  reviewed: Boolean
+  subcategory: SubcategoryType
+  subject: String
+  subtopic: String
+  timer: String
+  topic: String
+}
+
+input GeneratePodcastInput {
+  simulationUUIDs: [String!]!
+}
+
+type GeneratedSimulationRes {
+  data: [SimulationDataType!]!
+  pagination: Pagination!
+}
+
+type GetAvatars {
+  data: [ChatAIAvatarEntity!]!
+  limit: Float!
+  page: Float!
+  totalItems: Float!
+  totalPages: Float!
+}
+
+type GetCasesQuesRes {
+  cases: [CaseEntity!]!
+  pagination: Pagination!
+}
+
+type GetChannelsType {
+  channelCoverImage: String
+  channelDescription: String
+  channelName: String!
+  channelUUID: String!
+  onGoingEpisode: Boolean!
+}
+
+type GetClinicalExamsRes {
+  clinicalExams: [ClinicalExamEntity!]!
+  pagination: Pagination!
+}
+
+type GetCovByCaseRes {
+  conversations: [ConversationEntity!]!
+  pagination: Pagination!
+}
+
+input GetEpisodeSimulationInput {
+  channelName: String
+  episodeTitle: String
+  episodeUUID: String!
+  eventName: String!
+  eventUUID: String!
+}
+
+type GetEpisodeSimulationRes {
+  userSimulation: [ConvertSimulationRes!]
+}
+
+type GetFaqsRes {
+  faqs: [FaqEntity!]!
+  pagination: Pagination!
+}
+
+type GetMedSynopsisCaseRes {
+  cases: [MedSynopsisCaseEntity!]!
+  pagination: Pagination!
+}
+
+type GetMobileChannelEventType {
+  coverImage: String
+  description: String
+  eventCurrentEpisode: EventCurrentEpisodeType
+  eventUUID: String
+  name: String
+  onGoingEpisode: Boolean
+}
+
+type GetMobileChannelEventsRes {
+  channelCoverImage: String
+  channelDescription: String
+  channelName: String!
+  events: [GetMobileChannelEventType!]
+}
+
+type GetMobileChannelsRes {
+  category: String
+  channels: [GetChannelsType!]
+}
+
+type GetMyQuesRes {
+  pagination: Pagination!
+  questions: [QuestionEntity!]!
+}
+
+input GetOtpInput {
   email: String!
+}
 
-  """confirmPassword field (placeholder)"""
-  newPassword: String!
+type GetPresRes {
+  pagination: Pagination!
+  presentations: [PresentationEntity!]!
+}
 
-  """password field (placeholder)"""
+input GetQuesToReviewInput {
+  limit: Float
+  medScrollID: String!
+  page: Float
+
+  """
+  Input the question type. Example: Dx Quest, Med-Match, Problem List, etc.
+  """
+  questionType: String!
+  subspecialty: String!
+}
+
+type GetQuestionsRes_v2 {
+  isLessBySystems: Boolean
+  isLessBySystemsTopic: Boolean
+  resultBySubCat: [QuestionEntity!]
+  resultBySystem: [QuestionEntity!]
+  resultByTopic: [QuestionEntity!]
+}
+
+type GetScheduledSimulationRes {
+  simulations: [GetScheduledSimulationType!]!
+  weekNumber: Float!
+}
+
+type GetScheduledSimulationType {
+  episode: String!
+  episodeTitle: String!
+  episodeTopics: [String!]!
+  episodeUUID: String
+  scheduled: DateTime!
+  status: String!
+}
+
+type GetShortCasesRecordRes {
+  cases: [ShortCaseRes!]!
+  title: String!
+}
+
+type GetShortCasesTemplateRes {
+  title: String!
+}
+
+type GetSystemsRes {
+  system: String
+  topics: [GetTopicRes!]
+}
+
+type GetTemplateCategoryCasesRes {
+  caseUUID: String!
+  content: String!
+  name: String!
+}
+
+type GetTopicRes {
+  subtopics: [String!]
+  topic: String
+}
+
+type GetTutorialByCatNameRes {
+  category: String!
+  coverImage: String
+  isUpcoming: Boolean
+  order: String
+  progress: String!
+  quiz: [TutorialSectionQuiz!]
+  quizResult: [UserQuizScoreEntity!]
+  section: [TutorialSectionType!]!
+  sectionTitle: String!
+  tutorialUUID: String!
+  upcomingTutDate: DateTime
+  upcomingTutDuration: String
+}
+
+input GoogleLoginInput {
+  app: String
+  email: String!
+  firstName: String
+  guestUUID: String
+  lastName: String
+}
+
+type GroupedChatEpisodes {
+  episodes: [ChatEpisodeEntity!]!
+  scheduledDate: DateTime!
+}
+
+type IMedRandomQuestionRes {
+  caseContent: String!
+  caseTitle: String!
+  caseUUID: String!
+  categoryTitle: String!
+  categoryUUID: String!
+  question: String!
+}
+
+type IMedSynopsisCategoryRes {
+  categoryUUID: String!
+  coverImage: String
+  createdAt: DateTime!
+  description: String
+  title: String!
+  updatedAt: DateTime!
+}
+
+type Image {
+  caption: String
+  url: String!
+}
+
+input ImageObj {
+  caption: String!
+  url: String!
+}
+
+type ImageUrlRes {
+  secure_url: String!
+}
+
+input IncomingTutorialInput {
+  category: String!
+  sectionTitle: String!
+  upcomingTutDate: DateTime!
+  upcomingTutDuration: String!
+}
+
+type Instruction {
+  longCase: String!
+  shortCase: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+input KnowledgeBasesInp {
+  knowledgeBaseIds: [String!]!
+}
+
+type LeaderBoardRes {
+  component: String
+  name: String
+  profileImage: String
+  ranking: Int
+  region: String
+  totalPoints: Float!
+  totalTimeTaken: Float!
+  userUUID: String
+}
+
+input LeaderboardInput {
+  component: String
+  region: String
+}
+
+type LearningPath {
+  questionsAreas: [QuestionsArea!]
+  step: String!
+  subject: String!
+  topics: [Topic!]!
+}
+
+type LearningPathEntity {
+  learningPathContent: String!
+  learningPathUUID: String!
+  threadId: String
+  title: String!
+  userUUID: String!
+}
+
+type Level {
+  current: Float
+  currentCount: Float
+  currentPoints: Float
+  lastTopLevel: Float
+  previous: Float
+}
+
+type ListAsstRes {
+  created_at: Int
+  description: String
+  id: String
+  instructions: String
+  model: String
+  name: String
+  object: String
+  temperature: Float
+  tool_resources: ToolResource
+  tools: [Tool!]
+  top_p: Float
+}
+
+input LoginInput {
+  email: String!
   password: String!
 }
 
-type HealthRecord {
-  """blood pressure field (placeholder)"""
-  bloodPressure: String
-
-  """diagnosis field (placeholder)"""
-  diagnosis: String
-
-  """genotype field (placeholder)"""
-  genotype: String
-
-  """blood gluocose field (placeholder)"""
-  glucose: Int
-
-  """heart rate field (placeholder)"""
-  heartRate: String
-
-  """height field (placeholder)"""
-  height: String
-
-  """note field (placeholder)"""
-  note: String
-  respiratoryRate: String
-
-  """temperature field (placeholder)"""
-  temperature: Int
-  treatment: String
-
-  """weight field (placeholder)"""
-  weight: String
+type LoginRes {
+  access_token: String
+  message: String
+  user: UserEntity
 }
 
-type InvestigationEntity {
-  """date field (placeholder)"""
-  createdAt: DateTime!
-
-  """date field (placeholder)"""
-  doctor: String
-
-  """id field (placeholder)"""
-  id: String!
-  investigationStatus: String
-
-  """unit field (placeholder)"""
-  notes: String
-
-  """patient field (placeholder)"""
-  patient: String!
-  result: InvestigationResult
-
-  """date field (placeholder)"""
-  test: String!
-
-  """unit field (placeholder)"""
-  uniqueCode: String!
-
-  """date field (placeholder)"""
-  updatedAt: DateTime!
-
-  """patient field (placeholder)"""
-  visit: String!
+type LongCase {
+  accOfExam: Float
+  accOfHistory: Float
+  development: Float
+  synthesis: Float
+  understanding: Float
 }
 
-type InvestigationResult {
-  """date field (placeholder)"""
-  doneAt: String
-
-  """date field (placeholder)"""
-  doneBy: String
-
-  """result field (placeholder)"""
-  testHeading: String
-
-  """date field (placeholder)"""
-  testParam: String
-
-  """date field (placeholder)"""
-  testRes: String
+type MasterOutlineRes {
+  system: String
+  topics: [String!]
 }
 
-type Laborataory {
-  """Example field (placeholder)"""
-  exampleField: Int!
+input MasterOutlineTypes {
+  system: String
+  topics: [String!]
 }
 
-type LoginResponse {
-  accessToken: String!
-  refreshToken: String
+input MedCategoryInput {
+  description: String
+  title: String!
+}
+
+input MedScoreRecordInput {
+  caseUUID: String!
+  categoryName: String!
+  completionTime: String
+  gameType: String = "timed"
+  userSummary: String!
+}
+
+type MedScoreRecordType {
+  accuracy: Float!
+  clarityConciseness: Float!
+  completionTime: Float!
+  organizationStructure: Float!
+  relevance: Float!
+}
+
+input MedScrollOpenEndedQuizInput {
+  """
+  Expected: Open ended short and long form, True or False or Multiple choice
+  """
+  questionType: String
+
+  """Expected: count down per question or all time"""
+  timer: String
+}
+
+type MedSynopsisCaseEntity {
+  caseContent: String!
+  caseSummary: String!
+  caseTitle: String!
+  caseUUID: String!
+  categoryUUID: String!
+  isGradeStrictly: Boolean
+  question: String!
+  reviewed: Boolean
+}
+
+type MedSynopsisUserCaseEntity {
+  userData: [MedSysnopsisUserCaseProp!]!
+  userUUID: String!
+}
+
+type MedSynopsisUserCaseRes {
+  caseContent: String!
+  caseID: String!
+  fileUrl: String
+  messageId: String
+  threadId: String
+  userSummary: String!
+}
+
+type MedSysnopsisUserCaseProp {
+  caseContent: String!
+  caseID: String!
+  fileName: String
+  messageId: String
+  threadId: String
+  userSummary: String!
+}
+
+type MedUserScoreRes {
+  aIFeedback: String
+  caseAISummary: String!
+  chatThreadId: String
+  score: Float!
+  scoreSummary: MedScoreRecordType!
+  userSummary: String!
+}
+
+type MedUserSummaryDetailType {
+  assignedTime: Float
+  caseUUID: String!
+  completionTime: Float
+  gameType: String!
+  score: Float!
+  scoreRecord: MedScoreRecordType!
+  userSummary: String!
+}
+
+type MedicalExamsSubjectsRes {
+  category: String
+  coverImage: String
+  subcategory: String
+  subject: String
+  totalNumber: Int
+}
+
+input Medscroll {
+  quizUUID: String
+  status: Boolean
+  subcategory: [String!]
+}
+
+input MedsynopsisCaseInput {
+  caseContent: String!
+  caseSummary: String!
+  caseTitle: String!
+  categoryUUID: String!
+  question: String!
+}
+
+type MessageRes {
+  message: String!
+  questionUUIDs: [String!]
+}
+
+type Meta {
+  fileUrl: String
+  title: String
+}
+
+type MobileChannelRes {
+  categoryName: String!
+  channelCoverImage: String
+  channelDescription: String
+  channelName: String!
+  channelUUID: String!
+  isFollowed: Boolean!
+}
+
+type MobileChannelsEventsRes {
+  events: [ChannelsEventsType!]
+  pagination: Pagination!
 }
 
 type Mutation {
-  changePassword(input: ChangePasswordInput!): String!
-  changePasswordAtFirstLogin(input: FirstLoginInput!): String!
-  createAppointment(createAppointmentInput: CreateAppointmentInput!): Appointment!
-  createDesignation(createDesignationInput: CreateDesignationInput!): Designation!
-  createEmergencyPatient(createPatientInput: CreatePatientInput!): Patient!
-  createLaborataory(createLaborataoryInput: CreateLaborataoryInput!): Laborataory!
-  createPatient(createPatientInput: CreatePatientInput!): Patient!
-  createRole(createRoleInput: CreateRoleInput!): Role!
-  createUser(createUserInput: CreateUserInput!): User!
-  deletePatient(id: String!): String!
-  deleteUser(id: String!): String!
-  forgotPassword(email: String!): String!
-  login(input: AuthLoginInput!): LoginResponse!
-  logout: String!
-  removeAppointment(id: Int!): Appointment!
-  removeDesignation(id: String!): String!
-  removeLaborataory(id: Int!): Laborataory!
-  removeRole(id: String!): String!
-  resetPassword(input: ResetPasswordInput!): String!
-  scheduleDischarge(dischargeDate: DateTime!, id: String!): Patient!
-  updateAppointment(updateAppointmentInput: UpdateAppointmentInput!): Appointment!
-  updateDesignation(id: String!, updateDesignationInput: UpdateDesignationInput!): Designation!
-  updateLaborataory(updateLaborataoryInput: UpdateLaborataoryInput!): Laborataory!
-  updatePatient(updatePatientInput: UpdatePatientInput!): Patient!
-  updateRole(id: String!, updateRoleInput: UpdateRoleInput!): Role!
-  updateUser(id: String!, updateUserInput: UpdateUserInput!): User!
+  AddChatAIRoles(role: String!): String!
+  AddMedSynopsisCase(medCaseInput: MedsynopsisCaseInput!): String!
+  AddMedSynopsisCategory(addMedCategoryInput: MedCategoryInput!, file: Upload): String!
+  DeleteMedSynopsisCase(caseUUID: String!): String!
+  DeleteMedSynopsisCategory(categoryUUID: String!): String!
+  PlaygroundMedUpdateAndDeleteQues(playgroundMedUpdateAndDeleteInput: PlaygroundMedUpdateAndDeleteInput!): String!
+  PlaygroundUpdateAndDeleteQues(playgroundUpdateAndDeleteInput: PlaygroundUpdateAndDeleteInput!): String!
+  UpdateMedSynopsisCase(caseUUID: String!, updateMedCaseInput: UpdateMedsynopsisCaseInput!): String!
+  UpdateMedSynopsisCategory(categoryUUID: String!, file: Upload, updateMedCategoryInput: UpdateMedCategoryInput!): String!
+  addChatAIAvatar(aIAvatarInput: [AIAvatarInput!]!): String!
+  addChatCategory(name: String!): String!
+  addChatChannel(addChannelInput: [ChannelInput!]!): String!
+  addChatEpisodes(addChatEpisodesInput: AddChatEpisodesInput!): String!
+  addChatEvent(addEventInput: EventInput!, coverImage: Upload, eventTemplate: Upload!, eventUUID: String, isDraft: Boolean, masterOutline: Upload): ChatEventEntity!
+  addLongTemplateCase(addTemplateCaseInput: AddTemplateCaseInput!, files: [Upload!]!, isFree: Boolean): TemplateEntity!
+  addLongTemplateCaseTest(addTemplateCaseInput: AddTemplateCaseInput!, files: [Upload!]!): TemplateEntity!
+  addMessage(file: Upload, threadMessageInput: ThreadMessageInput!): AssistantRes!
+  addPresToCategory(categoryUUID: String!, presUUID: String!): String!
+  addQBQuizCategory(addCusCatInput: AddCusCatInput!): MessageRes!
+  addQuestionToQuiz(addQuestionInput: AddQuestionInput!): MessageRes!
+  addShortTemplateCase(addTemplateCaseInput: AddShortCaseTemplateInput!, files: [Upload!]!, isFree: Boolean): TemplateEntity!
+  addSubCategoryToCategory(category: String!, subCategory: String!): PlaygroundPresCategoryEntity!
+  addTemplateCategory(category: String!, createTemplateCategoryInput: [CreateTemplateCategoryInput!]!, isFree: Boolean): [CreateTemplateCategoryRes!]!
+  addTutorialSectionArticleSlide(category: String!, sectionTitle: String!, slides: [String!]!, subSectionTitle: String!): ClinicalExamTutorialEntity!
+  addTutorialSectionNoteAndVideo(categoryName: String!, note: String!, sectionTitle: String!, title: String!, videoUrl: String!): UploadTutorialArticleRes!
+  addTutorialSectionQuiz(payload: AddTutorialSectionQuizDto!): ClinicalExamTutorialEntity!
+  addUserMedsynopsisCase(file: Upload, threadId: String, userPrompt: String): MedSynopsisUserCaseRes!
+  aiGenerateEpisodeOutline(eventName: String, noOfEpisode: Float!, outlines: [MasterOutlineTypes!], prompt: String): [AIGeneratedEpisodeOutlineRes!]!
+  appleLoginMobile(socialLoginInput: SocialLoginInput!): LoginRes!
+  askQuestion(conversationRes: AskQuestionInput): AskQuestionRes!
+  assignJoinCodesToEpisodes: DataRes!
+  cancelClinExSub(subscriptionId: String!): UserEntity!
+  cancelPayment(cancelPaymentDto: CancelPaymentDto!): PaymentRes!
+  cancelSlideSub(subscriptionId: String!): UserEntity!
+  cancelSubscription(subscriptionId: String!): UserEntity!
+  changeArticleReadingStatus(articleUUID: String!, sectionTitle: String!, status: String!, tutorialUUID: String!): String!
+  configPlaygroundPresentation(additionalFiles: Upload, configPresInput: ConfigPresInput!, outline: Upload): AssistantRes!
+  configPresentation(configPresInput: ConfigPresInput!, files: [Upload!]): AssistantRes!
+  confirmSetupIntent(updateSetupIntentDto: UpdateSetupIntentDto!): SetupIntRes!
+  contactUs(contactUsInput: ContactUsInput!): MessageRes!
+  continueAsGuest: LoginRes!
+  convertDocxToHtml(file: Upload!): DataRes!
+  convertPdfToMarkdown(file: Upload!): PdfToMarkdownRes!
+  convertToHTML(file: Upload!): String!
+  crateProduct(createProductInput: CreateProductInput!): ProductEntity!
+  crateSlideProduct(createSlideProductInput: CreateSlideProductInput!): SlideProductEntity!
+  createAgent(createAgentInp: CreateAgentInp!): DataRes!
+  createAndAddFillesToVS(files: [Upload!]!): AssistantVSRes!
+  createAssistant: CreateAsstRes!
+  createCase(caseInput: CreateCaseInput!): CaseEntity!
+  createClinExProduct(createClinExProdInput: CreateClinExProdInput!): ClinExamProdEntity!
+  createClinExStripeProd(clinExStripeProdDto: ClinExStripeProdDto!): DataRes!
+  createClinExSub(stripeSubDto: StripeSubDto!): UserEntity!
+  createClinicalExam: ClinicalExamEntity!
+  createClinicalExamTutorial(category: String!, sectionTitle: String!): ClinicalExamTutorialEntity!
+  createCustomer(stripeCustomerDto: StripeCustomerDto!): UserEntity!
+  createFaq: [FaqEntity!]!
+  createFeatured(createFeaturedInput: CreateFeaturedInput!): FeaturedEntity!
+  createGame(gameInput: GameInput!): GameRes!
+  createOpenEndedQuizAI(aiFile: Upload, createOpenEndedQuizAIInput: CreateOpenEndedQuizAIInput!, file: Upload): String!
+  createOrUpdateExamPrepConfiguration(curriculumFile: Upload, examPrepConfigInput: ExamPrepConfigDto!, questionsFile: Upload): String!
+  createPlaygroundConfig(masterOutline: Upload, playgroundConfigInput: PlaygroundConfigInput!, sampleQuestion: Upload, template: Upload): String!
+  createPlaygroundPres(playgroundPresInput: PlaygroundPresInput!): PlaygroundPresentationEntity!
+  createPlaygroundPresCategory(createPlaygroundPresCategoryInput: CreatePlaygroundPresCategoryDto!): PlaygroundPresCategoryEntity!
+  createPractCase: PractCaseEntity!
+  createPractCaseCat(caseCategoryInp: PractCaseCatInp!): PractCaseCatEntity!
+  createPresentation(presInput: PresInput!): PresentationEntity!
+  createQuiz(createQuizInput: CreateQuizInput!, file: Upload): QuizEntity!
+  createSetupIntent(paymentMethodId: String!): SetupIntRes!
+  createSlideSub(stripeSubDto: StripeSubDto!): UserEntity!
+  createStripeProduct(stripeProductDto: StripeProductDto!): DataRes!
+  createSubscription(stripeSubDto: StripeSubDto!): UserEntity!
+  createTemplate(isFree: Boolean, name: String!): CreateTemplateRes!
+  createUploadedEpisode(uploadedEpisodeInput: UploadedEpisodeInput!): MessageRes!
+  createWebhookEndpoint(stripeWebhookDto: StripeWebhookDto!): DataRes!
+  createslideSetupIntent(paymentMethodId: String!): SetupIntRes!
+  deleteAgents(deleteAgentsInp: AgentsInp!): DataRes!
+  deleteCase(caseUUID: String!): MessageRes!
+  deleteChatAvatar(avatarUUID: String!): String!
+  deleteChatCategory(categoryUUID: String!): String!
+  deleteChatChannel(channelUUID: String!): String!
+  deleteChatEvent(eventUUID: String!): String!
+  deleteClinicalExam(examUUID: String!): MessageRes!
+  deleteEpisode(episodeUUID: String!): Boolean!
+  deleteFaq(faqUUID: String!): MessageRes!
+  deleteFeatured(featureUUID: String!): MessageRes!
+  deleteImageFromQuestion(deleteQsImagesInput: DeleteQsImagesInput!): MessageRes!
+  deleteKnowledgeBases(knowledgeBasesInp: KnowledgeBasesInp!): DataRes!
+  deletePlaygroundPresCategory(categoryUUID: String!): String!
+  deletePractCase(practCaseUUID: String!): MessageRes!
+  deletePractCaseCat(practCaseCatUUID: String!): MessageRes!
+  deletePresentation(presUUID: String!): MessageRes!
+  deleteQuestion(questionUUID: String!): MessageRes!
+  deleteQuiz(quizUUID: String!): MessageRes!
+  deleteSimulationEpisode(simulationUUID: String!): String!
+  deleteUpcomingTutorial(sectionTitle: String!, tutorialUUID: String!): String!
+  deleteUserUploadedMedCaseById(caseID: String!): String!
+  demoCreditUser(creditUserInput: CreditUserInput!): DataRes!
+  demoTriggerEvent(event: String!): MessageRes!
+  editQBQuizCategory(updateCusCatInput: UpdateCusCatInput!): MessageRes!
+  endExaminer2Interaction(endExaminer2Inp: EndExaminer2Inp!): MessageRes!
+  extractOutlineToJson(outline: Upload): String!
+  facebookLoginMobile(socialLoginInput: SocialLoginInput!): LoginRes!
+  filesUpload(files: [Upload!]!): FilesUploadRes!
+  forgotPassword(getOtpInput: GetOtpInput!): MessageRes!
+  generateAIcase(casePromptInput: CasePromptInput!): CasePromptRes!
+  generateAIquiz(file: Upload, quizPromptInput: QuizPromptInput!): QuizAIRes!
+  generateExamLearningPath: String!
+  generateExamQuestions(
+    examLearningPathThreadId: String
+
+    """the number of questions you want the AI to generate. default is 1000"""
+    limit: Float
+  ): QuestionsRes!
+  generateMedCaseSummaryScore(medSummaryScoreInput: MedScoreRecordInput!, threadId: String): MedUserScoreRes!
+  generateOpenEndedAIAdminQuiz(createOpenEndedQuesInput: CreateOpenEndedQuesInput!): String!
+  generateOpenEndedQuesAdmin(createOpenEndedQuesInput: CreateOpenEndedQuesInput!): OpenEndedAIRes!
+  generatePodcast(generatePodcastInput: GeneratePodcastInput!): MessageRes!
+  generatePresQuizOrPoll(payload: QuizPromptInput!): QuizAIRes!
+  generateRandomMedSynopsisQuestions: RandomQuestionRes!
+  generateSimulation(chatEpisodeInput: ChatEpisodeInput!, threadId: String, userPrompt: String): String!
+  generateUpdatedSimulation(updateEpisodeInput: SimulationUpdateInputDto!, userPrompt: String): SimulationUpdateRes!
+  getUUID: DataRes!
+  googleLoginMobile(googleLoginInput: GoogleLoginInput!): LoginRes!
+  googleLoginSlide(token: String!): LoginRes!
+  groupQuestions(file: Upload): [QuestionEntity!]!
+  importQuestions(file: Upload!): MessageRes!
+  loginUser(loginInput: LoginInput!): LoginRes!
+  loginUserOtp(getOtpInput: GetOtpInput!): MessageRes!
+  makePayment(stripePaymentDto: StripePaymentDto!): PaymentRes!
+  movePresFromCategory(currentCategoryUUID: String!, newCategoryUUID: String!, presUUID: String!): String!
+  playgroundMedsynopsisQuestionsPreview(file: Upload, playgroundQuestInput: PlaygroundQuestInput!): PlaygroundMedSynopsisReviewRes!
+  playgroundQuizAndQuestionsCreation(categoryImage: Upload, categoryUUID: String, file: Upload, playgroundQuestInput: PlaygroundQuestInput!, subcategoryImage: Upload): String!
+  playgroundQuizAndQuestionsPreview(file: Upload, playgroundQuestInput: PlaygroundQuestInput!): PlaygroundReviewRes!
+  receiveSharedContent(sharedInput: SharedInput!): MessageRes!
+  registerUser(signUpInput: SignUpInput!): MessageRes!
+  removePresFromCategory(categoryUUID: String!, presUUID: String!): String!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): MessageRes!
+  saveUpcomingTutorial(upcomingTutorialInput: IncomingTutorialInput!): ClinicalExamTutorialEntity!
+  saveUserFollowedChannel(channelName: String!): String!
+  saveUserQuizScore(userQuizPayload: UserScoreTutorialInput!): String!
+  slideCreditPayment(buyCreditDto: BuyCreditDto!): PaymentRes!
+  startPresentation(presUUID: String!): PresentationEntity!
+  submitCaseResponse(submitResInput: SubmitCaseResInput!): SubmitCaseRes!
+  submitLCSelfGrade(submitLCGradeInp: SubmitLCGradeInp!): ConversationEntity!
+  submitOpenEndedResponse(submitResInput: SubmitOpenEndedResInput!): OpenEndedQuizScoreRes!
+  submitPollVote(voteInput: VoteInput!): SubmitVoteRes!
+  submitResponse(submitResInput: SubmitResInput!): SubmitQRes!
+  submitSCselfGrade(submitSCGradeInp: SubmitSCGradeInp!): ConversationEntity!
+  togglePermission(togglePermission: TogglePermission!): MessageRes!
+  udpdateChatAvatar(aiAvatarUpdateInput: [AIAvatarUpdateInput!]!): String!
+  updateAgent(updateAgentInp: UpdateAgentInp!): DataRes!
+  updateAssistant(assistantId: String!): ListAsstRes!
+  updateCase(caseInput: UpdateCaseInput!, caseUUID: String!): CaseEntity!
+  updateChatCategory(categoryUUID: String!, name: String!): String!
+  updateChatChannel(channelUpdateInput: ChannelUpdateInput!, coverImage: Upload): String!
+  updateChatEvent(coverImage: Upload, eventOutline: Upload, eventUpdateInput: EventUpdateInput!, masterOutline: Upload): String!
+  updateClinExProduct(updateClinExProdInput: UpdateClinExProdInput!): ClinExamProdEntity!
+  updateClinExSub(updateStripeSubDto: UpdateStripeSubDto!): UserEntity!
+  updateClinicalExam(updateClinicalExamInput: UpdateClinicalExamInput!): ClinicalExamEntity!
+  updateEpisode(episodeUUID: String!, updateData: ChatEpisodeUpdateInput!): ChatEpisodeEntity!
+  updateFaq(updateFaqInput: UpdateFaqInput!): FaqEntity!
+  updateFeatured(updateFeaturedInput: UpdateFeaturedInput!): FeaturedEntity!
+  updatePlaygroundPres(updatePresInput: UpdatePresInput!): PlaygroundPresentationEntity!
+  updatePlaygroundPresCategory(updatePlaygroundPresCategoryInput: UpdatePlaygroundPresCategoryDto!): PlaygroundPresCategoryEntity!
+  updatePollAndQuizByEventNameAndEpisode(episode: String!, eventName: String!, quizAndPollPayload: [SimulationQuizAndPollInput!]!, requestType: String!): String!
+  updatePractCase(updatePractCaseInput: UpdatePractCaseInput!): PractCaseEntity!
+  updatePractCaseCat(updateCaseCatInput: UpdatePractCaseCatInp!): PractCaseCatEntity!
+  updatePresSettings(presUUID: String!, settings: PlaygroundPresSettingsInput!): String!
+  updatePresentation(updatePresInput: UpdatePresInput!): PresentationEntity!
+  updateProduct(updateProductInput: UpdateProductInput!): ProductEntity!
+  updateProfile(editProfileInput: EditProfileInput!): MessageRes!
+  updateQuestion(updateQuestionInput: UpdateQuestion!): MessageRes!
+  updateQuestionInQuiz(updateQuestionInput: UpdateQuestionInput!): MessageRes!
+  updateQuiz(file: Upload, updateQuizInput: UpdateQuizInput!): QuizEntity!
+  updateSetupIntent(updateSetupIntentDto: UpdateSetupIntentDto!): MessageRes!
+  updateSimulationEpisode(simulationUpdatePayload: UpdateGeneratedSimulationRecordDto!): String!
+  updateSlideProduct(updateSlideProductInput: UpdateSlideProductInput!): SlideProductEntity!
+  updateSlideSub(updateStripeSubDto: UpdateStripeSubDto!): UserEntity!
+  updateSubscription(updateStripeSubDto: UpdateStripeSubDto!): UserEntity!
+  updateThread(updateThreadInput: UpdateThreadInput!): Thread!
+  updateUserUploadedMedCaseById(caseID: String!, file: Upload, updateData: UpdateUserCaseUploadInput!): MedSynopsisUserCaseEntity
+  updateWebhookEndpoint(updateStripeWebhookDto: UpdateStripeWebhookDto!): DataRes!
+  uploadBulkOpenEndedQuizByAdmin(medOpenEndedQuizInput: MedScrollOpenEndedQuizInput!, questionsFile: Upload, quizImagefile: Upload): String!
+  uploadEpisode(file: Upload!): UploadEpisodeRes!
+  uploadImage(destination: String!, file: Upload!): String!
+  uploadImageToCase(files: [Upload!]!): UploadQsImageRes!
+  uploadImageToQuestion(files: [Upload!]!): UploadQsImageRes!
+  uploadMasterOutline(eventName: String!, masterOutline: Upload!): String!
+  uploadProfileImage(file: Upload!): ImageUrlRes!
+  uploadSlidePresentation(embedLink: String, slideImages: [Upload!]): PlaygroundSlideUploadRes!
+  validateLoginUserOtp(validateOtpInput: ValidateOtpInput!): LoginRes!
 }
 
-type NextOfKinColumn {
-  """address status field (placeholder)"""
-  address: String
-
-  """country field (placeholder)"""
-  country: String
-  dateOfBirth: String!
-
-  """email field (placeholder)"""
-  email: String
-
-  """first name field (placeholder)"""
-  firstName: String
-
-  """last name field (placeholder)"""
-  lastName: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-
-  """phone number field (placeholder)"""
-  phoneNumber: String
-
-  """relationship field (placeholder)"""
-  relationship: String
-  state: String!
-
-  """zip code status field (placeholder)"""
-  zipCode: String
+type NextDiscoveryType {
+  channelName: String!
+  eventCoverImage: String
+  eventDescription: String
+  eventName: String!
+  eventUUID: String!
+  isLive: Boolean!
 }
 
-type Patient {
-  admissionDates: [String!]
-  admissionStatus: String!
-  bloodGroup: String
-  createdAt: DateTime!
-  dateOfBirth: String
-  dischargeDates: [String!]
+type OpenEndedAIRes {
+  questions: [OpenEndedAIType!]
+  user: UserEntity!
+}
 
-  """email field (placeholder)"""
-  email: String!
+type OpenEndedAIType {
+  answer: String
+  answer_details: String
+  category: String
+  comments: String
+  level: String
+  options: [String!]
+  question: String
+  reference: String
+  reviewed: Boolean
+  specialty: String
+  subcategory: String
+  subspecialty: String
+  subtopic: String
+  system: String
+  topic: String
+}
 
-  """first name field (placeholder)"""
-  firstName: String!
-  genotype: String
-
-  """Example field (placeholder)"""
+type OpenEndedAnswer {
+  answer: [String!]
+  answer_details: String
   id: String!
-  investigations: [String!]
-  language: String
-
-  """last name field (placeholder)"""
-  lastName: String!
-  maritalStatus: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-  nationality: String
-  nextOfKin: NextOfKinColumn
-  occupation: String
-  payerDetails: NextOfKinColumn
-  permanentAddress: AddressColumn
-
-  """phone field (placeholder)"""
-  phoneNumber: String
-  prescriptions: [PharmacyPrescription!]
-  profilePicture: String
-  reasonForDeath: String
-  religion: String
-  residentialAddress: AddressColumn
-  unique: String!
-  updatedAt: DateTime!
-  visits: [String!]
+  reference: String
 }
 
-type PatientResponse {
-  count: Int
-  currentPage: Int
-  patients: [Patient!]
-  totalPages: Int
+type OpenEndedIncoming {
+  assignedTime: Float
+  expectedAnswer: [String!]
+  expectedAnswerDetails: String!
+  mode: String
+  question: String!
+  questionUUID: String
+  timeTaken: Float!
+  userAnswer: [String!]
 }
 
-type PharmacyPrescription {
-  """date field (placeholder)"""
-  createdAt: DateTime!
+type OpenEndedItemsRes {
+  feedback: String
+  question: OpenEndedIncoming
+  score: Float!
+  speedBonus: Float!
+}
 
-  """doctor field (placeholder)"""
-  doctor: String!
+type OpenEndedQuesCount {
+  category: String!
+  count: Float!
+  coverImage: String!
+}
 
-  """id field (placeholder)"""
+type OpenEndedQuizScoreRes {
+  items: [OpenEndedItemsRes!]
+  overallGrade: ScoreGroup!
+}
+
+input OpenEndedResponseInput {
+  assignedTime: Float!
+  expectedAnswer: [String!]
+  expectedAnswerDetails: String!
+  mode: String
+  question: String!
+  questionUUID: String
+  timeTaken: Float!
+  userAnswer: [String!]
+}
+
+input OpenEndedWithAIInput {
+  optionNo: Float
+  prompt: String
+  questionNo: Float
+  subtopic: String
+  url: String
+}
+
+input Opt {
   id: String!
-  isDispensed: Boolean
-  isPaid: Boolean
-  isRefill: Boolean
-  items: [PrescriptionUnit!]
-
-  """patient field (placeholder)"""
-  patient: String!
-  status: String!
-  totalCost: Int
-  uniqueCode: String!
-
-  """date field (placeholder)"""
-  updatedAt: DateTime!
-
-  """patient field (placeholder)"""
-  visit: String!
+  value: String!
 }
 
-type PrescriptionUnit {
-  """duration field (placeholder)"""
-  duration: Int!
+type Option {
+  id: String!
+  value: String!
+}
 
-  """unit field (placeholder)"""
-  frequency: String!
+input OptionInput {
+  key: String
+  route: String
+  title: String
+}
 
-  """strength field (placeholder)"""
-  notes: String!
+type OptionType {
+  key: String
+  route: String
+  subspecialties: [String!]
+  title: String
+}
 
-  """product field (placeholder)"""
-  product: String!
+type Options {
+  key: String
+  route: String
+  title: String
+}
 
-  """quantity field (placeholder)"""
-  quantity: Int!
+type Pagination {
+  currentPage: Float
+  nextPage: Float
+  pageSize: Float
+  prevPage: Float
+  totalPages: Float
+  totalRecords: Float
+}
 
-  """route of admin (placeholder)"""
-  routeOfAdmin: String!
+type PatientProfile {
+  age: Float!
+  agentId: String
+  dob: String!
+  ethnicity: String!
+  gender: String!
+  image: String!
+  name: String!
+}
+
+input PatientProfileInp {
+  age: Float!
+  agentId: String
+  dob: String!
+  ethnicity: String!
+  gender: String!
+  image: String!
+  name: String!
+}
+
+type PaymentIntRes {
+  paymentIntent: JSON!
+}
+
+type PaymentMethodRes {
+  paymentMethod: JSON!
+}
+
+type PaymentRes {
+  client_secret: String
+  id: String!
+  status: String
+}
+
+type PdfToMarkdownRes {
+  markdown: String
+}
+
+type PerformanceRes {
+  correct: Float
+  incorrect: Float
+  missed: Float
+}
+
+type PlaygroundAddInfo {
+  type: String
+  value: PlaygroundAddInfoValue
+}
+
+type PlaygroundAddInfoValue {
+  image: String
+  text: String
+}
+
+type PlaygroundConfigEntity {
+  category: String!
+  configUUID: String!
+  masterOutline: PlaygroundTypesEntity
+  sampleQuestion: PlaygroundSampleQuestionTypeEntity
+  specialty: String
+  subcategory: String
+  subject: String
+  subspecialty: String
+  template: PlaygroundTemplateTypeEntity
+}
+
+input PlaygroundConfigInput {
+  category: String!
+  specialty: String
+  subcategory: String
+  subject: String
+  subspecialty: String
+}
+
+type PlaygroundConfigTopicRes {
+  data: [PlaygroundMasterOutlineRes!]
+  masterOutlineFileName: String
+  sampleQuestionFileName: String
+  templateFileName: String
+}
+
+type PlaygroundMasterOutlineRes {
+  data: [PlaygroundTopicsAndSubtopicsRes!]
+  system: String
+}
+
+type PlaygroundMasterOutlineTypes {
+  data: [PlaygroundTopicsAndSubtopicsType!]
+  system: String
+}
+
+input PlaygroundMedQuestionsUpdateInput {
+  caseContent: String!
+  caseSummary: String!
+  caseTitle: String!
+  caseUUID: String!
+  categoryUUID: String
+  isGradeStrictly: Boolean = false
+  question: String!
+  reviewed: Boolean
+}
+
+type PlaygroundMedSynopsisReviewRes {
+  questions: [PlaygroundMedsynopsisType!]!
+  threadId: String!
+}
+
+input PlaygroundMedUpdateAndDeleteInput {
+  discarded: [PlaygroundMedQuestionsUpdateInput!]
+  reviewed: [PlaygroundMedQuestionsUpdateInput!]
+}
+
+type PlaygroundMedsynopsisRes {
+  caseContent: String!
+  caseSummary: String!
+  caseTitle: String!
+  caseUUID: String!
+  categoryUUID: String!
+  isGradeStrictly: Boolean!
+  question: String!
+  reviewed: Boolean!
+}
+
+type PlaygroundMedsynopsisType {
+  caseContent: String!
+  caseSummary: String!
+  caseTitle: String!
+  question: String!
+}
+
+type PlaygroundPresCategoryEntity {
+  category: String!
+  categoryUUID: String!
+  presentations: [PlaygroundPresentationEntity!]
+  subCategory: String
+  topic: String
+}
+
+input PlaygroundPresInput {
+  addInfo: AddInfoInp
+  audience: String
+  description: String
+  goals: String
+  inReview: Boolean
+  isBulk: Boolean
+  isDraft: Boolean
+  isEmbeded: Boolean
+  isPublic: Boolean
+  isPublished: Boolean
+  isUploadType: Boolean
+  isUrlType: Boolean
+  note: String
+  reference: RefInp
+  script: [JSONObject!]
+  slidesPreview: [PreviewInp!]
+  subTitle: String
+  theme: String
+  threadId: String
+  title: String
+}
+
+type PlaygroundPresQuestion {
+  answer: [String!]
+  answer_details: String
+  options: [String!]
+  presQuestionUUID: String
+  question: String
+  reference: String
+  subtopic: String
+  topic: String
+}
+
+input PlaygroundPresSettingsInput {
+  activateAIComment: Boolean
+  activateAIQuestion: Boolean
+  activateAuthorAvatar: Boolean
+  canForward: Boolean
+  showLeaderboard: Boolean
+}
+
+type PlaygroundPresentationEntity {
+  activateAIComment: Boolean
+  activateAIQuestion: Boolean
+  activateAuthorAvatar: Boolean
+  addInfo: PlaygroundAddInfo
+  audience: String
+  canForward: Boolean
+  createdAt: DateTime!
+  description: String
+  goals: String
+  inReview: Boolean
+  inviteCode: String
+  isBulk: Boolean
+  isDraft: Boolean
+  isEmbeded: Boolean
+  isMedScroll: Boolean
+  isPublic: Boolean!
+  isPublished: Boolean
+  isUploadType: Boolean
+  isUrlType: Boolean
+  note: String
+  presUUID: String!
+  reference: PlaygroundRef
+  script: [JSON!]
+  showLeaderboard: Boolean
+  slidesPreview: [PlaygroundPreview!]
+  subTitle: String
+  theme: String
+  threadId: String
+  title: String
+}
+
+type PlaygroundPreview {
+  allowMultiAnswer: Boolean
+  answerIndicator: Boolean
+  answerPoints: String
+  backgroundColor: String
+  content: JSON
+  contentUrl: [String!]
+  coverImage: String
+  embedUrl: String
+  font: String
+  id: Float
+  profileImg: PlaygroundProfileImg
+  questionType: String
+  questions: [PlaygroundPresQuestion!]
+  quizType: String
+  randomize: Boolean
+  showExplanation: Boolean
+  slideImage: String
+  subTitle: String
+  template: String
+
+  """The time is in the following format: HH:MM:SS"""
+  time: String
+  title: String
+  type: String
+}
+
+type PlaygroundProfileImg {
+  image: String
+  name: String
+  role: String
+}
+
+input PlaygroundQuesToReviewInput {
+  """
+  Input the question type. Example: Basic Science, General Trivia, Medical Trivia
+  """
+  category: String!
+  limit: Float
+  page: Float
+  questionType: String
+  specialty: String
+  subcategory: String
+  subject: String
+  subspecialty: String
+}
+
+input PlaygroundQuestInput {
+  aiModel: String = "OpenAI"
+  category: String!
+  isGradeStrictly: Boolean! = false
+  prompt: String
+  questionNo: Float
+  questionType: String
+  section: String
+  specialty: String
+  subcategory: String
+  subject: String
+  subspecialty: String
+  threadId: String
+  topics: [String!]
+}
+
+input PlaygroundQuestionsUpdateInput {
+  answer: QuestAnswer!
+  category: String
+  comments: String
+  isGradeStrictly: Boolean = false
+  level: Float
+  options: [QuestOption!]!
+  question: String!
+  questionNumber: Float
+  questionUUID: String!
+  quizUUID: String
+  reviewed: Boolean
+  specialty: String
+  subject: String
+  subspecialty: String
+  subtopic: String
+  topics: [String!]
+}
+
+type PlaygroundQuestionsUpdateRes {
+  answer: QuestAnswerRes!
+  category: String
+  comments: String
+  isGradeStrictly: Boolean
+  level: Float
+  options: [QuestOptionRes!]!
+  question: String!
+  questionNumber: Float
+  questionUUID: String!
+  quizUUID: String
+  reviewed: Boolean
+  specialty: String
+  subject: String
+  subspecialty: String
+  subtopic: String
+  topic: String
+}
+
+type PlaygroundRef {
+  caption: String
+  type: String
+  value: String
+}
+
+type PlaygroundReviewRes {
+  questions: [playgroundPreviewResType!]!
+  threadId: String!
+}
+
+type PlaygroundSampleQuestionTypeEntity {
+  content: String
+  fileName: String
+}
+
+type PlaygroundSlideAllCategoriesRes {
+  category: String
+  subCategories: [AllCategoriesRes!]
+}
+
+type PlaygroundSlideUploadRes {
+  embedLink: String
+  isEmbed: Boolean
+  isUpload: Boolean
+  isUrl: Boolean
+  slides: [String!]
+}
+
+type PlaygroundTemplateTypeEntity {
+  content: String
+  fileName: String
+}
+
+type PlaygroundTopicsAndSubtopicsRes {
+  subtopic: [String!]
+  topic: String
+}
+
+type PlaygroundTopicsAndSubtopicsType {
+  subtopic: [String!]
+  topic: String
+}
+
+type PlaygroundTypesEntity {
+  content: [PlaygroundMasterOutlineTypes!]
+  fileName: String
+  masterOutlineTemplate: String
+}
+
+input PlaygroundUpdateAndDeleteInput {
+  discarded: [PlaygroundQuestionsUpdateInput!]
+  reviewed: [PlaygroundQuestionsUpdateInput!]
+}
+
+type PodcastChatCategoriesRes {
+  categories: [ChatCategoryRes!]!
+  pagination: Pagination!
+}
+
+type PodcastHomeFeedRes {
+  categories: [ChatCategoryRes!]!
+  continueListening: [ChatEpisodeWithProgress!]!
+  recentEpisodes: [ChatEpisodeEntity!]!
+}
+
+type PollChatType {
+  chat: String!
+  chatUUID: String!
+  comments: [PollChatType!]
+  likes: Float!
+  userId: [UserEntity!]
+}
+
+type PollOptionType {
+  id: String!
+  value: String!
+  vote: Float
+}
+
+type PollOptionsResType {
+  id: String!
+  value: String!
+  vote: Float!
+}
+
+input PollOptionsType {
+  id: String!
+  value: String!
+  vote: Float!
+}
+
+type PractCaseCatEntity {
+  caseNo: String!
+  caseType: String!
+  description: String
+  examiners: Examiners
+  image: String
+  medications: String
+  name: String!
+  patientOverview: String!
+  patientProfile: PatientProfile
+  physicalExam: String
+  practCaseCatUUID: String!
+  practCaseId: PractCaseEntity
+  time: String!
+}
+
+input PractCaseCatInp {
+  caseNo: String!
+  caseType: String!
+  description: String
+  examiners: ExaminerInput
+  image: String
+  medications: String
+  name: String!
+  patientOverview: String!
+  patientProfile: PatientProfileInp!
+  physicalExam: String
+  practCaseUUID: String!
+  time: String!
+}
+
+type PractCaseCatRes {
+  instructions: Instruction!
+  pagination: Pagination!
+  practCaseCats: [PractCaseCatEntity!]!
+}
+
+type PractCaseEntity {
+  description: String
+  image: String
+  logo: String
+  name: String!
+  practCaseUUID: String!
+}
+
+type PractCaseRes {
+  pagination: Pagination!
+  practCases: [PractCaseEntity!]!
+}
+
+input PresImageInput {
+  image: String
+  isTheme: Boolean = false
+  prompt: String!
+  slideNo: Float
+  themeNo: Float
+}
+
+input PresInput {
+  addInfo: AddInfoInp
+  audience: String
+  goals: String
+  isDraft: Boolean
+  isPublic: Boolean
+  note: String
+  reference: RefInp
+  script: [JSONObject!]
+  slidesPreview: [PreviewInp!]
+  subTitle: String
+  theme: String
+  threadId: String
+  title: String
+}
+
+type PresPromptRes {
+  answer: [String!]
+  answer_details: String
+  options: [String!]
+  presQuestionUUID: String
+  question: String
+  reference: String
+  subtopic: String
+  topic: String
+}
+
+type PresQuestion {
+  answer: [String!]
+  answer_details: String
+  options: [String!]
+  presQuestionUUID: String
+  question: String
+  reference: String
+  subtopic: String
+  topic: String
+}
+
+type PresentationEntity {
+  activateAIComment: Boolean
+  activateAIQuestion: Boolean
+  addInfo: AddInfo
+  audience: String
+  createdAt: DateTime!
+  goals: String
+  inviteCode: String
+  isDraft: Boolean!
+  isPublic: Boolean!
+  note: String
+  presUUID: String!
+  reference: Ref
+  script: [JSON!]
+  slidesPreview: [Preview!]
+  subTitle: String
+  theme: String
+  threadId: String
+  title: String
+  userId: UserEntity
+}
+
+type Preview {
+  allowMultiAnswer: Boolean
+  answerIndicator: Boolean
+  answerPoints: String
+  backgroundColor: String
+  content: JSON
+  coverImage: String
+  font: String
+  id: Float
+  profileImg: ProfileImg
+  questionType: String
+  questions: [PresQuestion!]
+  quizType: String
+  randomize: Boolean
+  showExplanation: Boolean
+  slideImage: String
+  subTitle: String
+  template: String
+
+  """The time is in the following format: HH:MM:SS"""
+  time: String
+  title: String
+  type: String
+}
+
+input PreviewInp {
+  allowMultiAnswer: Boolean
+  answerIndicator: Boolean
+  answerPoints: String
+  backgroundColor: String
+  content: JSON
+  contentUrl: [String!] = []
+  coverImage: String
+  embedUrl: String
+  font: String
+  id: Float
+  profileImg: ProfileImgInp
+  questionType: String
+  questions: [AddPresQuestion!]
+  quizType: String
+  randomize: Boolean
+  slideImage: String
+  subTitle: String
+  template: String
+  time: String
+  title: String
+  type: String
+}
+
+type Price {
+  fourMonths: Float!
+  monthly: Float!
+}
+
+input PriseInput {
+  fourMonths: Float!
+  monthly: Float!
+}
+
+type PrivateChatType {
+  chat: String!
+  chatUUID: String!
+  userId: [UserEntity!]
+  userType: String!
+}
+
+type ProductEntity {
+  amount: Cost!
+  casePresentation: String!
+  caseRecall: String!
+  credits: String!
+  generalTrivia: Boolean!
+  medicalTrivia: Boolean!
+  medsynopsis: String!
+  multiplayerCapacity: String!
+  plan: String!
+  productUUID: String!
+  quizAI: String!
+  storage: String!
+  stripeProduct: StripeProduct
+  tokenTopUp: TokenTopUp
+}
+
+type ProfileImg {
+  image: String
+  name: String
+  role: String
+}
+
+input ProfileImgInp {
+  image: String
+  name: String
+  role: String
+}
+
+type PromptCaseRes {
+  answer: Answer
+  options: [Option!]
+  question: String
+  questionUUID: String
+  subtopic: String
+}
+
+type QAndAType {
+  comments: [QAndAType!]
+  date: DateTime!
+  likes: Float
+  question: String!
+  questionUUID: String!
+  userId: [UserEntity!]
+}
+
+type QBCatRes {
+  qbQuizCategory: String
+  quizUUID: String!
+  totalQuestion: Int
 }
 
 type Query {
-  appointment(id: Int!): Appointment!
-  designation(id: String!): Designation!
-  designations: [Designation!]!
-  emergencyPatients(filter: FilterDto! = {limit: 10, page: 1, search: ""}): [Patient!]!
-  laborataory(id: Int!): Laborataory!
-  patient(id: String!): Patient!
-  patients(filter: FilterDto! = {limit: 10, page: 1, search: ""}): PatientResponse!
-  role(id: String!, search: String): RoleReturnDto!
-  roles(search: String): [Role!]!
-  user(id: String!): User!
-  users(filter: FilterDto! = {limit: 10, page: 1, search: ""}): UserResponse!
+  attachPaymentMethod(
+    """Expected: medscroll or medscroll_slide"""
+    app: String
+    paymentMethodId: String!
+  ): DataRes!
+  calculateRanking(userUUID: String!): CalculateRankingRes!
+  cancelSetupIntent(setupIntentId: String!): SetupIntRes!
+  changeEpisodeStatus(episodeUUID: String!, status: String!): ChatEpisodeEntity!
+  chatAssistantAI(chatAssInput: ChatAssInput!): AssistantRes!
+  clearCacheByPattern(pattern: String!): MessageRes!
+  confirmPayment(paymentId: String!): MessageRes!
+  createMedscrollQuiz: MessageRes!
+  createVectorStore: MessageRes!
+  deactivateAccount: MessageRes!
+  deleteAssistant(assistantId: String!): MessageRes!
+  deleteClinExCustomer(stripeCustomerId: String!): MessageRes!
+  deleteCustomer(
+    """Expected: medscroll or medscroll_slide"""
+    app: String
+
+    """Expected: stripeCustomerUUID"""
+    stripeCustomerId: String!
+  ): MessageRes!
+  deleteThread(threadId: String!): MessageRes!
+  deleteThreadGrp(threadGrpUUID: String!): MessageRes!
+  deleteVectorStore(vectorStorId: String!): MessageRes!
+  deleteWebhookEndpoint(webhooId: String!): DataRes!
+  demoTriggerLiveEpisode(demoUpdateEpisode: DemoUpdateEpisode!): MessageRes!
+  detachPaymentMethod(paymentMethodId: String!): DataRes!
+  findUsername(username: String!): MessageRes!
+  generateImage(genImageInput: GenImageInput!): DataRes!
+  generatePresImage(message: String!): String!
+  generatePresImage_v2(message: [PresImageInput!]!): String!
+  generatePresQuiz(presQuizInput: QuizPromptInput!): QuizAIRes!
+  generatePresQuiz_v2(presQuizInput: QuizPromptInput!): QuizAIRes!
+  getAIfeedback(aiGradingInput: AIFeedbackInput!): AIfeedbackRes!
+  getAIgrading(aiGradingInput: AIgradingInput!): AIgradingRes!
+  getAllCaseQuestions(
+    """Expected: caseUUID"""
+    caseUUID: String
+    limit: Int = 15
+    page: Int = 1
+  ): GetMyQuesRes!
+  getAllChatAIRoles: [ChatAIRolesEntity!]!
+  getAllClinExProduct: [ClinExamProdEntity!]!
+  getAllDrive(component: String, dateCreated: String, limit: Int = 15, page: Int = 1): AllDriveARes!
+  getAllEpisodes(episodeTitle: String, eventName: String, limit: Int = 15, page: Int = 1): ChatEpisodeRes!
+  getAllFeatured: [FeaturedEntity!]!
+  getAllGroupedByCategoryAndSubCategory(limit: Float!, page: Float!): [PlaygroundSlideAllCategoriesRes!]!
+  getAllProduct: [ProductEntity!]!
+  getAllQuiz: [QuizEntity!]!
+  getAllRoles: [RoleEntity!]!
+  getAllSlideProduct: [SlideProductEntity!]!
+  getAllSpecialties: [SpecialtyRes!]!
+  getAllUploadUsersMedCases: [MedSynopsisUserCaseEntity!]!
+  getAllUserUploadedMedCase: [MedSynopsisUserCaseEntity!]!
+  getBoardComponents: [String!]!
+  getCaseByLevel(level: Float!, userUUID: String): CaseEntity!
+  getCaseByUUID(caseUUID: String!): CaseEntity!
+  getCases(limit: Int = 15, page: Int = 1): GetCasesQuesRes!
+  getCategory: TransformedData!
+  getChannelHomeFeed: ChannelHomeFeedRes!
+  getChatAvatar(avatarUUID: String!): ChatAIAvatarEntity!
+  getChatAvatars(limit: Float = 100, page: Float = 1): GetAvatars!
+  getChatCategories: [ChatCategoryEntity!]!
+  getChatCategory(categoryUUID: String!): ChatCategoryEntity!
+  getChatCategoryByName(categoryName: String!): ChatCategoryEntity!
+  getChatChannel(channelUUID: String!): ChatChannelEntity!
+  getChatChannelByName(channelName: String!): ChatChannelEntity!
+  getChatChannels: [ChatChannelEntity!]!
+  getChatEvent(eventUUID: String!): ChatEventEntity!
+  getChatEventByName(eventName: String!): ChatEventEntity!
+  getChatEvents(isDraft: Boolean): [ChatEventEntity!]!
+  getChatMobileChannelEvents(channelName: String!, eventName: String): GetMobileChannelEventsRes!
+  getChatMobileChannels(channelName: String): [GetMobileChannelsRes!]!
+  getChatMobileEpisodeSimulation(getSimulationInput: GetEpisodeSimulationInput!): GetEpisodeSimulationRes!
+  getChatMobileEventEpisodes(episode: String, eventName: String!, limit: Float, page: Float): ChannelsEpisodeRes!
+  getClinExProduct(clinExProdUUID: String!): ClinExamProdEntity!
+  getClinicalExam(examUUID: String!): ClinicalExamEntity!
+  getClinicalExams(limit: Int = 15, page: Int = 1): GetClinicalExamsRes!
+  getCompletedSimulation(episodeUUID: String!): [ConvertSimulationType!]!
+  getConversation(conversationUUID: String!): ConversationEntity!
+  getDefaultPaymentMethod(app: String): DataRes!
+  getDriveByTitleCategory(component: String, dateCreated: String, limit: Int = 15, page: Int = 1): DriveTitleCatRes!
+  getEpisodeById(episodeUUID: String!): ChatEpisodeEntity!
+  getEpisodesByName(episodeTitle: String!, eventName: String!): [ChatEpisodeEntity!]!
+  getEpisodesForcalendar(endDate: String, startDate: String): [GroupedChatEpisodes!]!
+  getExamPrepLearningPath: LearningPathEntity!
+  getExchangeRate: MessageRes!
+  getExporeChannels(channelName: String): [ChatMobileExporeChannelRes!]!
+  getFaq(faqUUID: String!): FaqEntity!
+  getFaqs(limit: Int = 15, page: Int = 1): GetFaqsRes!
+  getGroupedBySubCategory(category: String!, limit: Float!, page: Float!): [PlaygroundPresCategoryEntity!]!
+  getHello: AppRes!
+  getInReviewPlaygroundPresentations: [PlaygroundPresentationEntity!]!
+  getLeaderBoard(filterInput: LeaderboardInput!): [LeaderBoardRes!]!
+  getLongCasesTemplate(category: String!, isFree: Boolean, limit: Float, page: Float, templateName: String!): [GetTemplateCategoryCasesRes!]!
+  getMasterOutline(eventName: String!): [MasterOutlineRes!]!
+  getMedsynopsisCaseByCat(categoryUUID: String!): IMedRandomQuestionRes!
+  getMedsynopsisCaseByUUID(caseUUID: String!): MedSynopsisCaseEntity!
+  getMedsynopsisCases(limit: Int = 15, page: Int = 1): GetMedSynopsisCaseRes!
+  getMedsynopsisCategories: [IMedSynopsisCategoryRes!]!
+  getMobileChannelEpisodes_v2(channelName: String!, limit: Float, page: Float): ChannelsEpisodeRes!
+  getMobileChannelEvents_v2(channelName: String!, limit: Float, page: Float): MobileChannelsEventsRes!
+  getMobileChannel_v2(channelName: String!): MobileChannelRes!
+  getMyConvByCaseCatUUID(limit: Int = 15, page: Int = 1, practCaseCatUUID: String!): GetCovByCaseRes!
+  getMyQuestions(
+    limit: Int = 15
+    page: Int = 1
+
+    """Expected: quizUUID or quizCategoryId"""
+    quizOrCatId: String
+  ): GetMyQuesRes!
+  getOneFeatured(featureUUID: String!): FeaturedEntity!
+  getOpenEndedQuesCount: [OpenEndedQuesCount!]!
+  getOpenEndedQuesFromQuesBank(
+    """should be Dx Quest, Med-Match, Problem List Evaluation"""
+    questionType: String!
+  ): [GenerateOpenEndedQuesRes!]!
+  getOpenEndedQuesToReview(getQuesToReviewInput: GetQuesToReviewInput!): ReviewOpenEndedQuesRes!
+  getPerformance(
+    """Expected: qb"""
+    quiz: String = "trivia"
+  ): PerformanceRes!
+  getPlaygroundConfigBySubcategory(category: String!, subcategory: String!): PlaygroundConfigEntity!
+  getPlaygroundConfigTopics: [PlaygroundConfigEntity!]!
+  getPlaygroundPresCategories: [PlaygroundPresCategoryEntity!]!
+  getPlaygroundPresCategory(categoryUUID: String!): PlaygroundPresCategoryEntity!
+  getPlaygroundPresDrafts: [PlaygroundPresentationEntity!]!
+  getPlaygroundPresentation(presUUID: String!): PlaygroundPresentationEntity!
+  getPlaygroundPresentations: [PlaygroundPresentationEntity!]!
+  getPodcastChatCategories(limit: Int = 15, page: Int = 1): PodcastChatCategoriesRes!
+  getPodcastHomeFeed: PodcastHomeFeedRes!
+  getPractCase(practCaseUUID: String!): PractCaseEntity!
+  getPractCaseCat(practCaseCatUUID: String!): PractCaseCatEntity!
+  getPractCaseCats(caseType: String, limit: Int = 15, page: Int = 1, practCaseUUID: String!): PractCaseCatRes!
+  getPractCases(limit: Int = 15, page: Int = 1): PractCaseRes!
+  getPresByInviteCode(joinCode: String!): PresentationEntity!
+  getPresNextQuestion(inviteCode: String!, questionType: String!): PresentationEntity!
+  getPresentation(presUUID: String!): PresentationEntity!
+  getPresentations(accessMode: String, isDraft: Boolean, limit: Int = 15, page: Int = 1): GetPresRes!
+  getProduct(productUUID: String!): ProductEntity!
+  getProfile: UserEntity!
+  getQBQuizCategory(
+    """Expected: hasQuestion"""
+    query: String
+  ): [CustomCat!]!
+  getQuesFromQuesBank(quizUUID: String!): [QuestionEntity!]!
+  getQuesToUpdate(quizUUID: String!): [QuestionEntity!]!
+  getQuestions(caseUUID: String, isContinue: Boolean = false, quizUUID: String, subcatId: String, subspecialty: String, systems: [SystemTopics!]): [QuestionEntity!]!
+  getQuestions_v2(caseUUID: String, isContinue: Boolean = false, quizUUID: String, subcatId: String, subspecialty: String, systems: [SystemTopics!]): GetQuestionsRes_v2!
+  getQueuedSimulations(eventName: String, limit: Float, page: Float): GeneratedSimulationRes!
+  getQuiz(quizUUID: String!): QuizEntity!
+  getQuizByEventNameAndEpisode(episode: String!, eventName: String!, requestType: String!): [SimulationQuizAndPoll!]!
+  getQuizzesByChatEventName(eventName: String): [SimulationQuiz!]!
+  getScheduledSimulationsByWeek(eventName: String): [GetScheduledSimulationRes!]!
+  getSharedContent: [SharedRes!]!
+  getShortCasesTemplate(category: String!, isFree: Boolean, limit: Float, page: Float, templateName: String!): [GetShortCasesTemplateRes!]!
+  getShortCasesTemplateRecords(category: String!, isFree: Boolean, limit: Float, page: Float, templateName: String!, title: String!): [GetShortCasesRecordRes!]!
+  getSimulationsDetails(eventName: String!): SimulationEventDetailsRes!
+  getSlideProduct(slideProductUUID: String!): SlideProductEntity!
+  getStripeCustomer(
+    """Expected: medscroll or medscroll_slide"""
+    app: String
+
+    """Expected: stripeCustomerUUID"""
+    stripeCustomerUUID: String!
+  ): DataRes!
+  getStripeCustomers(
+    """Expected: medscroll or medscroll_slide"""
+    app: String
+    limit: Int = 15
+    page: Int = 1
+  ): DataRes!
+  getSubCategorySubjects(category: String, subcategory: String!): [MedicalExamsSubjectsRes!]!
+  getSubSpecialty(category: String, specialty: String): [ClinicialSubspecialtyRes!]!
+  getSubategory(category: String): [SubcategoryRes!]!
+  getSubspecialty(specialtyUUID: String!): [SubspecialtyRes!]!
+  getTemplates(category: String!, isFree: Boolean, templateName: String, templateType: String!): TemplateEntity!
+  getThreadGrp(
+    """
+    Default to CASE_PRESENTATION. Accept CASE_RECALL, QUIZ_AI, EXAMPREP, DxQuest, OPENENDED, USER_MEDSYNOPSIS or MEDSYNOPSIS
+    """
+    component: String
+  ): [ThreadGrpRes!]!
+  getTopics(subcategoryId: String!, subject: String, subspecialty: String): [GetSystemsRes!]!
+  getTopicsAndSubtopicsFromMasterOutline(category: String!, specialty: String, subcategory: String, subject: String, subspecialty: String): PlaygroundConfigTopicRes!
+  getTutorial(category: String!, limit: Float, page: Float, search: String, sectionTitle: String!, status: String): GetTutorialByCatNameRes!
+  getTutorialByCatName(category: String!, limit: Float, page: Float, search: String, status: String): [GetTutorialByCatNameRes!]!
+  getUnpublishedPlaygroundPresentations: [PlaygroundPresentationEntity!]!
+  getUpcomingTutorials: [ClinicalExamTutorialEntity!]!
+  getUserScoreByType(category: String, sectionTitle: String, subcategory: String, type: String!): [UserQuizScoreEntity!]!
+  getUserScores(category: String, sectionTitle: String, subcategory: String): [UserQuizScoreEntity!]!
+  getUserUploadedMedCaseByCaseId(caseID: String!): MedSynopsisUserCaseEntity
+  getUserVisitedChannels: [UserVisitedChannelsRes!]!
+  getWeeklyFeatured: [FeaturedEntity!]!
+  listAllCustomers: MessageRes!
+  listAllPayment: PaymentIntRes!
+  listAllPaymentMethod: PaymentMethodRes!
+  listAllSetupIntent: RetrieveSetupIntRes!
+  listAllSlidePayment: PaymentIntRes!
+  listAllSlidePaymentMethod: PaymentMethodRes!
+  listAllSlideSetupIntent: RetrieveSetupIntRes!
+  listAllStripeProducts: DataRes!
+  listAllSubscriptions(
+    """Expected: medscroll, medscroll_slide or medscroll_clinical_exams"""
+    app: String
+    limit: Float
+    productPriceId: String
+
+    """
+    Status of the subscription to be listed. Accepted all, ended or canceled. Default to all subscriptions that have not been canceled are returned.
+    """
+    status: String
+  ): DataRes!
+  listAssistants: [ListAsstRes!]!
+  listFiles: DataRes!
+  listMessagesByThreadId(limit: Float, threadId: String!): [AssistantRes!]!
+  listVectorStores(after: String, limit: Float): DataRes!
+  listWebhookEndpoint: DataRes!
+  playUntimeQuiz(untimeQuizInput: UntimeQuizInput!): [QuestionEntity!]!
+  playgroundMedUnreviewedQuest(playgroundQuesToReviewInput: PlaygroundQuesToReviewInput!, reviewed: Boolean!): UnReviewedMedQuestionRes!
+  playgroundUnreviewedQuest(playgroundQuesToReviewInput: PlaygroundQuesToReviewInput!, reviewed: Boolean!): UnReviewedQuestionRes!
+  resetCache: MessageRes!
+  retrieveAgent(agentId: String!): DataRes!
+  retrieveAssistant(assistantId: String!): ListAsstRes!
+  retrieveConversation(conversationId: String!): DataRes!
+  retrieveCustomer(stripeCustomerId: String!): MessageRes!
+  retrieveModels: DataRes!
+  retrievePayment(paymentId: String!): PaymentIntRes!
+  retrievePaymentMethod(paymentMethodId: String!): PaymentMethodRes!
+  retrieveSetupIntent(setupIntentId: String!): RetrieveSetupIntRes!
+  retrieveSlidePaymentMethod(paymentMethodId: String!): PaymentMethodRes!
+  retrieveStripeProduct(stripeProductId: String!): DataRes!
+  retrieveSubscription(stripeSubId: String!): MessageRes!
+  searchDrive(limit: Int = 15, page: Int = 1, search: String): AllDriveARes!
+  setDefaultPaymentMethod(
+    """Accepted: medscroll or medscroll_slide"""
+    app: String
+    paymentMethodId: String!
+  ): MessageRes!
+  slideAssistantAI(slideAssInput: SlideAssInput!): AssistantRes!
+  slideMedScrollAssistantAI(slideAssInput: SlideAssInput!): AssistantRes!
+  submitPresentation(file: Upload!, submitPresInput: SubmitPresInput!): SubmitPresRes!
+  submitPresentationLC(file: Upload!, submitPresLCinp: SubmitPresLCinp!): SubmitPresLCres!
+  tesingStreaks: MessageRes!
+  transcribeFile(file: Upload): String!
+  uploadFileToOpenai(file: Upload): UploadFileRes!
+  verifyStripePayment(paymentId: String!): MessageRes!
 }
 
-type Recomendation {
-  """note field (placeholder)"""
-  note: String!
+input QuestAnswer {
+  answer: String!
+  answer_details: String
+  id: String!
+  reference: String
+}
 
-  """recomendation field (placeholder)"""
-  recomendation: String!
+type QuestAnswerRes {
+  answer: String!
+  answer_details: String
+  id: String!
+  reference: String
+}
 
-  """date field (placeholder)"""
-  recommender: String
+input QuestOption {
+  id: String!
+  value: String!
+}
+
+type QuestOptionRes {
+  id: String!
+  value: String!
+}
+
+type QuestionEntity {
+  answer: Answer!
+  caseUUID: String
+  category: String
+  comments: String
+  competency: String
+  contentBreakdown: String
+  difficulty: String
+  focusArea: String
+  hasOptions: Boolean
+  images: [String!]
+  isGradeStrictly: Boolean
+  keywords: String
+  level: Float
+  mode: String
+  options: [Option!]!
+  question: String!
+  questionNumber: Float
+  questionType: String
+  questionUUID: String!
+  quizUUID: String
+  reviewed: Boolean
+  specialty: String
+  subcategory: Subcategory
+  subject: String
+  subspecialty: String
+  subtopic: String
+  system: String
+  topic: String
+  votes: [Vote!]
+}
+
+type QuestionsArea {
+  image: String
+  link: String
+  text: String!
+}
+
+type QuestionsRes {
+  questions: [QuestionsResType!]
+  title: String!
+}
+
+type QuestionsResType {
+  answer: [String!]
+  options: [String!]
+  question: String
+  questionId: String!
+  subject: String
+  subtopic: String
+  topic: String
+  type: String
+}
+
+type QuizAIRes {
+  questions: [PresPromptRes!]
+  quizUUID: String
+  threadId: String
+}
+
+type QuizEntity {
+  category: String!
+  coverImage: String
+  description: String
+  duration: String!
+  isPublish: Boolean
+  point: Float!
+  quizCategory: CustomCat
+  quizUUID: String!
+  timer: String
+  topic: String
+  totalDuration: String
+  totalQuestion: Float
+}
+
+input QuizPromptInput {
+  allowMultiAnswer: Boolean
+  isPresentation: Boolean
+  optionNo: Float
+  prompt: String
+  questionNo: Float
+
+  """Expected: True or False or Multiple choice"""
+  questionType: String
+  subtopic: String
+  threadId: String
+  title: String
+  topic: String
+
+  """Accepted enum type QUIZ or POLL"""
+  type: String! = "QUIZ"
+  url: String
+}
+
+type RandomCategoryType {
+  categoryName: String!
+  channels: [ChannelType!]
+}
+
+type RandomQuestionRes {
+  caseContent: String!
+  caseTitle: String!
+  caseUUID: String!
+  categoryName: String!
+  categoryUUID: String!
+}
+
+type RecentType {
+  channelName: String!
+  channelUUID: String!
+  episode: String!
+  episodeTitle: String!
+  episodeUUID: String!
+  eventCoverImage: String
+  eventDescription: String
+  eventName: String!
+  eventUUID: String!
+  fileUrl: String
+  joinCode: String
+  scheduled: DateTime!
+  status: String!
+}
+
+type Ref {
+  caption: String
+  type: String
+  value: String
+}
+
+input RefInp {
+  caption: String
+  type: String!
+  value: String!
+}
+
+type Report {
+  correct: Float
+  correctQB: Float
+  incorrect: Float
+  incorrectQB: Float
+  missed: Float
+  missedQB: Float
 }
 
 input ResetPasswordInput {
-  confirmPassword: String!
-  password: String!
-  token: String!
-}
-
-type Role {
-  """created field (placeholder)"""
-  createdAt: DateTime!
-
-  """description field (placeholder)"""
-  description: String
-
-  """designation field (placeholder)"""
-  designations: [Designation!]
-
-  """id field (placeholder)"""
-  id: String!
-
-  """name field (placeholder)"""
-  name: String!
-
-  """updated field (placeholder)"""
-  updatedAt: DateTime!
-
-  """user field (placeholder)"""
-  users: [User!]
-}
-
-type RoleReturnDto {
-  """designation field (placeholder)"""
-  designations: [Designation!]
-
-  """name field (placeholder)"""
-  role: Role!
-}
-
-input UpdateAppointmentInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input UpdateDesignationInput {
-  """description field (placeholder)"""
-  description: String
-  id: String!
-
-  """name field (placeholder)"""
-  name: String
-
-  """role field (placeholder)"""
-  role: String
-}
-
-input UpdateLaborataoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input UpdatePatientInput {
-  bloodGroup: String
-  dateOfBirth: String
-
-  """email field (placeholder)"""
-  email: String
-
-  """first name field (placeholder)"""
-  firstName: String
-  genotype: String
-  id: String
-  language: String
-
-  """last name field (placeholder)"""
-  lastName: String
-  maritalStatus: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-  nationality: String
-
-  """account status field (placeholder)"""
-  nextOfKin: CreateNextOfKin
-  occupation: String
-
-  """account status field (placeholder)"""
-  payerDetails: CreateNextOfKin
-
-  """permanent address status field (placeholder)"""
-  permanentAddress: AddressInput
-
-  """phone field (placeholder)"""
-  phoneNumber: String
-  religion: String
-
-  """address status field (placeholder)"""
-  residentialAddress: AddressInput
-}
-
-input UpdateRoleInput {
-  """description field (placeholder)"""
-  description: String
-  id: String!
-
-  """name field (placeholder)"""
-  name: String
-}
-
-input UpdateUserInput {
-  """blood group field (placeholder)"""
-  bloodGroup: String
-
-  """date of birth field (placeholder)"""
-  dateOfBirth: DateTime
-
-  """role field (placeholder)"""
-  designation: String
-
-  """email field (placeholder)"""
-  email: String
-
-  """first name field (placeholder)"""
-  firstName: String
-
-  """gender status field (placeholder)"""
-  gender: String
-
-  """blood group field (placeholder)"""
-  genotype: String
-
-  """id field (placeholder)"""
-  id: String
-
-  """last name field (placeholder)"""
-  lastName: String
-
-  """marital status field (placeholder)"""
-  maritalStatus: String
-
-  """middle name field (placeholder)"""
-  middleName: String
-
-  """national"ity status field (placeholder)"""
-  nationality: String
-
-  """account status field (placeholder)"""
-  nextOfKin: CreateNextOfKin
-
-  """otp field (placeholder)"""
-  otp: String
-
-  """permanent address status field (placeholder)"""
-  permanentAddress: AddressInput
-
-  """phone number field (placeholder)"""
-  phoneNumber: String
-
-  """profile picture status field (placeholder)"""
-  profilePicture: String
-
-  """religion status field (placeholder)"""
-  religion: String
-
-  """address status field (placeholder)"""
-  residentialAddress: AddressInput
-
-  """role field (placeholder)"""
-  role: String
-}
-
-type User {
-  accountStatus: String!
-
-  """blood group field (placeholder)"""
-  bloodGroup: String
-
-  """created at field (placeholder)"""
-  createdAt: DateTime!
-
-  """date of birth field (placeholder)"""
-  dateOfBirth: DateTime
-  designation: Designation
-
-  """email field (placeholder)"""
   email: String!
+  newPassword: String!
+  otp: String!
+}
 
-  """first name field (placeholder)"""
-  firstName: String!
-  gender: String
+input ResponseInput {
+  answer: String!
+  isCorrect: Boolean!
+  isMissed: Boolean
+  questionUUID: String
+  timeTaken: Float
+}
 
-  """genotype field (placeholder)"""
-  genotype: String
+type Result {
+  cumulativeHours: String
+  dailyAverage: String
+  dailyStreak: Float
+  perceDailyAve: Float
+  performance: Report
+  ranking: Float
+  totalPoints: Float
+  totalQA: Float
+  totalQBques: Float
+  totalTimeTaken: Float
+  totalTriQues: Float
+  weeklyStreak: Float
+}
 
-  """id field (placeholder)"""
+type RetrieveSetupIntRes {
+  setupIntent: JSON!
+}
+
+type ReviewOpenEndedQuesRes {
+  pagination: Pagination!
+  questions: [ReviewOpenEndedQuesType!]!
+}
+
+type ReviewOpenEndedQuesType {
+  answer: String
+  answer_details: String
+  comments: String
+  question: String
+  questionUUID: String
+  reference: String
+  reviewed: String
+  specialty: String
+  subspecialty: String
+  subtopic: String
+  topic: String
+}
+
+type RoleEntity {
+  roleName: String!
+}
+
+type SampleQues {
+  longCase: String
+  shortCase: String
+}
+
+input SampleQuesInp {
+  longCase: String!
+  shortCase: String!
+}
+
+type ScoreGroup {
+  score: Float!
+  speedBonus: Float!
+}
+
+type ScoreRecord {
+  accuracy: Float!
+  clarityConciseness: Float!
+  organizationStructure: Float!
+  relevance: Float!
+  timeOfCompletion: Float!
+}
+
+type SetupIntRes {
+  client_secret: String
   id: String!
-  investigations: [String!]
-  isFree: Boolean!
+  status: String
+}
 
-  """last name field (placeholder)"""
-  lastName: String!
-  maritalStatus: String
+type Shared {
+  firstName: String
+  lastName: String
+  username: String
+}
 
-  """last name field (placeholder)"""
-  middleName: String
-  nationality: String
-  nextOfKin: NextOfKinColumn
+input SharedInput {
+  contentUUID: String!
 
-  """otp field (placeholder)"""
-  otp: String
+  """Alowed: SLIDE_PRESENTATION"""
+  sharedContent: String!
+}
 
-  """password field (placeholder)"""
+type SharedRes {
+  content: JSONObject
+  sharedBy: Shared
+  sharedContent: String!
+  sharedUUID: String!
+  sharedWith: Shared
+}
+
+type ShortCase {
+  accuracy: Float
+  interaction: Float
+  interpretation: Float
+  investigation: Float
+  technique: Float
+}
+
+type ShortCaseRes {
+  caseUUID: String
+  content: String!
+  name: String
+}
+
+type ShortCaseTemplate {
+  cases: [TemplateCase!]
+  title: String!
+}
+
+input SignUpInput {
+  app: String
+  email: String!
+  firstName: String
+  guestUUID: String
+  lastName: String
   password: String!
-  permanentAddress: AddressColumn
-
-  """phone number field (placeholder)"""
-  phoneNumber: String
-  prescriptions: [PharmacyPrescription!]
-  profilePicture: String
-  refreshToken: String
-  religion: String
-  residentialAddress: AddressColumn
-  role: Role!
-  unique: String!
-
-  """updated at field (placeholder)"""
-  updatedAt: DateTime!
-  visits: [Visit!]
 }
 
-type UserResponse {
-  count: Int
-  currentPage: Int
-  totalPages: Int
-  users: [User!]
+type SimulationDataType {
+  actorCount: Float
+  category: String!
+  channelDescription: String!
+  channelName: String!
+  characterDetails: [AICharacterResType!]!
+
+  """this is the episode name. Example, episode 1"""
+  episode: String!
+  episodeDescription: String
+  episodeOutline: String
+  episodeTitle: String!
+  episodeTopics: [String!]
+  eventDescription: String!
+  eventName: String!
+  eventOutline: String
+  fileUrl: String
+  genPodStatus: String
+  isUploaded: Boolean
+  masterOutline: String
+  noOfEpisodes: Float!
+  noOfQuestions: Float!
+  poll: [SimulationPoll!]
+  pollType: String!
+  quiz: [SimulationQuiz!]
+  quizType: String!
+  scheduled: DateTime
+  scheduledType: String
+  simulation: String!
+  simulationUUID: String!
+  threadId: String
 }
 
-type Visit {
-  """visit date field (placeholder)"""
-  allergy: [Allergy!]
+type SimulationEventDetailsRes {
+  eventDetails: ChannelsEventsType
+  hosts: [AICharacterResType!]
+  upNext: [ChannelsEpisodeType!]
+}
 
-  """visit date field (placeholder)"""
-  assessmentLog: Assessment
-  createdAt: DateTime!
+type SimulationPoll {
+  answer: String
+  answer_details: String
+  options: [PollOptionsResType!]!
+  question: String!
+  topic: String!
+}
 
-  """doctor field (placeholder)"""
-  doctor: String!
+type SimulationQuiz {
+  answer: String!
+  answer_details: String!
+  options: [String!]!
+  question: String!
+  topic: String!
+}
 
-  """visit date field (placeholder)"""
-  doctorNote: DoctorNote
+type SimulationQuizAndPoll {
+  answer: String
+  answer_details: String
+  pollOptions: [PollOptionsResType!]
+  question: String!
+  quizOptions: [String!]
+  topic: String
+}
 
-  """id field (placeholder)"""
+input SimulationQuizAndPollInput {
+  answer: String
+  answer_details: String
+  pollOptions: [PollOptionsType!]
+  question: String!
+  quizOptions: [String!]
+  topic: String!
+}
+
+input SimulationUpdateInputDto {
+  category: String!
+  channelDescription: String!
+  channelName: String!
+  characterDetails: [AICharacter!]!
+  description: String
+  duration: String
+  episode: String!
+  episodeTitle: String!
+  episodeTopics: [String!]!
+  eventDescription: String
+  eventName: String!
+  eventTemplate: String
+  noOfActors: Float = 0
+  noOfEpisodes: Float = 1
+  noOfPanelist: Float = 0
+  noOfQuestions: Float = 2
+  pollType: String = "MULTICHOICE"
+  quizType: String = "MULTICHOICE"
+  threadId: String
+}
+
+type SimulationUpdateRes {
+  episode: String!
+  episodeTitle: String!
+  poll: [SimulationPoll!]
+  quiz: [SimulationQuiz!]
+  simulation: String!
+}
+
+input SlideAssInput {
+  prompt: String
+  promptType: String
+  threadId: String
+  title: String
+}
+
+type SlideProductEntity {
+  accessToTemplateDesigns: Boolean!
+  aiAssistanceWithSlideCreation: Boolean!
+  aiCredits: Float!
+  name: String!
+  price: Cost!
+  slideProductUUID: String!
+  slideSharing: Boolean!
+  stripeProduct: StripeProduct
+}
+
+type SlideSub {
+  isActive: Boolean
+  isTrialPeriod: Boolean
+  plan: String
+  subCredits: Float
+  tokenBalance: Float
+  topUpCredits: Float
+}
+
+input SocialLoginInput {
+  app: String
+  email: String
+  firstName: String
+  guestUUID: String
   id: String!
-  investigations: [String!]
+  lastName: String
+}
 
-  """patient field (placeholder)"""
-  patient: String!
-  prescriptions: [String!]
+type SpecialtyRes {
+  specialty: String
+  specialtyUUID: String
+}
 
-  """visit date field (placeholder)"""
-  recommendation: Recomendation
-  uniqueCode: String!
-  updatedAt: String!
+type Stat {
+  option: String!
+  percentage: Int!
+}
 
-  """visit note field (placeholder)"""
-  visitNote: String
+type StripeCustomaData {
+  createdAt: DateTime
+  defaultPaymentMethod: String
+  stripeCustomerId: String
+  stripeCustomerUUID: String
+  stripeEventsId: [String!]
+  stripePayment: StripePayData
+  stripeSub: StripeSubData
+  updatedAt: DateTime
+}
 
-  """health record field (placeholder)"""
-  vitalSigns: HealthRecord
+input StripeCustomerDto {
+  """Accepted: medscroll or medscroll_slide"""
+  app: String
+  email: String!
+}
+
+type StripePayData {
+  amount: Float
+  currency: String
+  stripePayId: String
+  stripePayStatus: String
+}
+
+input StripePaymentDto {
+  email: String!
+  paymentMethodId: String
+  tokenNumber: Float!
+}
+
+type StripeProduct {
+  monthlyPriceId: String
+  stripeProductId: String
+  yearlyPriceId: String
+}
+
+input StripeProductDto {
+  amountMonthly: Float!
+  amountYearly: Float!
+  isSlideProduct: Boolean!
+  productName: String!
+}
+
+type StripeSubData {
+  cancelAtPeriodEnd: Boolean
+  chargeInterval: String
+  stripeSubId: String
+  stripeSubItemId: String
+  stripeSubPlanName: String
+  stripeSubStatus: String
+}
+
+input StripeSubDto {
+  cancelAtPeriodEnd: Boolean
+  defaultPaymentMethod: String
+  productPriceId: String!
+  subscriptionItemsId: String
+
+  """Accepted values: now"""
+  trialEnd: String
+}
+
+input StripeWebhookDto {
+  enabled_events: [String!]!
+  url: String!
+}
+
+type Sub {
+  credits: String
+  generalTrivia: Boolean
+  identifier: String
+  imageUploadPerQues: String
+  isActive: Boolean
+  isTrialPeriod: Boolean
+  maxNumQuestion: String
+  medicalTrivia: Boolean
+  multiplayerCapacity: String
+  plan: String
+  productId: String
+  storage: String
+  subCredits: Float
+  tokenBalance: Float
+  topUpCredits: Float
+  txtLimitPerOption: String
+  txtLimitPerQuestion: String
+}
+
+type Subcat {
+  id: String
+  subcat: String
+}
+
+type Subcategory {
+  coverImage: String
+  id: String!
+  subcat: String!
+}
+
+input SubcategoryInput {
+  id: String!
+  subcat: String!
+}
+
+type SubcategoryRes {
+  coverImage: String
+  subcategory: Subcat
+  totalNumber: Int
+}
+
+type SubcategoryType {
+  id: String
+  subcat: String
+}
+
+type SubmitCaseRes {
+  caseResults: CaseResult!
+  readingSpeed: Float!
+  status: String!
+  totalCorrect: Float!
+  totalPoints: Float!
+  totalQuestion: Float!
+  totalScore: Float!
+  userRanking: Float
+}
+
+input SubmitCaseResInput {
+  component: String!
+  level: Float!
+  readingSpeed: Float!
+  region: String
+  responses: [ResponseInput!]!
+}
+
+input SubmitLCGradeInp {
+  accOfExam: Float!
+  accOfHistory: Float!
+  comment: String
+  conversationUUID: String!
+  development: Float!
+  synthesis: Float!
+  understanding: Float!
+}
+
+input SubmitOpenEndedResInput {
+  component: String!
+  isSelfGrading: Boolean
+  point: Float
+  region: String
+  responses: [OpenEndedResponseInput!]!
+  subComponent: String
+
+  """Expected: count down per question or all time"""
+  timer: String
+}
+
+input SubmitPresInput {
+  practCaseCatUUID: String!
+}
+
+input SubmitPresLCinp {
+  patientAgentId: String!
+  practCaseCatUUID: String!
+}
+
+type SubmitPresLCres {
+  conversationUUID: String!
+}
+
+type SubmitPresRes {
+  conversationUUID: String!
+}
+
+type SubmitQRes {
+  totalCorrect: Float
+  totalIncorrect: Float
+  totalMissed: Float
+  totalPoints: Float!
+  totalScore: Float
+  totalSpeedBonus: Float
+  userRanking: Float
+}
+
+input SubmitResInput {
+  component: String
+  isIstantQuiz: Boolean
+  isQbank: Boolean
+  isUntimeQuiz: Boolean
+  point: Float
+  region: String
+  responses: [ResponseInput!]!
+}
+
+input SubmitSCGradeInp {
+  accuracy: Float!
+  comment: String
+  conversationUUID: String!
+  interaction: Float!
+  interpretation: Float!
+  investigation: Float!
+  technique: Float!
+}
+
+type SubmitVoteRes {
+  options: [Option!]!
+  question: String!
+  questionUUID: String!
+  statistics: [Stat!]
+}
+
+type Subspecialty {
+  subspecId: String
+  subspecialty: String
+}
+
+type SubspecialtyRes {
+  subspecialty: String
+}
+
+input SystemTopics {
+  data: [TopicSubtopic!]
+  system: String
+}
+
+type TemplateCase {
+  caseUUID: String
+  content: String!
+  name: String
+}
+
+type TemplateCategory {
+  categoryUUID: String
+  description: String
+  icon: String
+  image: String
+  longCases: [TemplateCase!]
+  name: String!
+  shortCases: [ShortCaseTemplate!]
+}
+
+type TemplateEntity {
+  category: String!
+  isFree: Boolean
+  templateUUID: String!
+  templates: [TemplateCategory!]!
+}
+
+type Thread {
+  description: String!
+  threadId: String!
+}
+
+type ThreadGrpRes {
+  component: String!
+  data: [Thread!]!
+  threadGrpUUID: String!
+  title: String!
+}
+
+input ThreadMessageInput {
+  """Needed for case recall only"""
+  level: Float
+  message: String
+  threadId: String
+}
+
+input TogglePermission {
+  email: String!
+  permissions: [String!]!
+}
+
+type TokenTopUp {
+  amount: Float
+  unitAmount: Float
+  value: Float
+}
+
+input TokensInput {
+  fourMonths: Float!
+  monthly: Float!
+}
+
+type Tool {
+  type: String
+}
+
+type ToolResource {
+  file_search: FileSeach
+}
+
+input TopUpInput {
+  """Amount in AUD e.g 2"""
+  amount: Float!
+
+  """1"""
+  unitAmount: Float!
+
+  """1000000"""
+  value: Float!
+}
+
+type Topic {
+  subTopics: [String!]
+  title: String!
+}
+
+input TopicSubtopic {
+  subtopics: [String!]
+  topic: String
+}
+
+type TransformedData {
+  categories: JSON!
+}
+
+input TutorialQuizDto {
+  answer: String!
+  answer_details: String!
+  optionA: String
+  optionB: String
+  optionC: String
+  optionD: String
+  question: String!
+  type: String = "MULTICHOICE"
+}
+
+type TutorialSectionQuiz {
+  answer: String!
+  answer_details: String!
+  options: [String!]!
+  question: String!
+  questionUUID: String!
+  type: String
+}
+
+type TutorialSectionReading {
+  articleUUID: String!
+  quizResult: [UserQuizScoreEntity!]
+  readingStatus: String!
+  user: UserEntity!
+}
+
+type TutorialSectionType {
+  article: String
+  note: String
+  sectionUUID: String
+  slides: [String!]
+  title: String
+  transcript: String
+  userData: [TutorialSectionReading!]
+  videoUrl: String
+}
+
+type UnReviewedMedQuestionRes {
+  pagination: Pagination!
+  questions: [PlaygroundMedsynopsisRes!]!
+}
+
+type UnReviewedQuestionRes {
+  pagination: Pagination!
+  questions: [PlaygroundQuestionsUpdateRes!]!
+}
+
+input UntimeQuizInput {
+  subcategory: [String!]!
+  totalQuestion: Float
+}
+
+input UpdateAgentInp {
+  agentId: String!
+  voice_id: String!
+}
+
+input UpdateCaseInput {
+  details: String
+  images: [ImageObj!] = []
+  keywords: String
+  level: Float
+  subject: String
+}
+
+input UpdateClinExProdInput {
+  aiCredit: TokensInput
+  aiFeedback: String
+  aiLCPractice: Boolean
+  aiSCPractice: Boolean
+  clinExProdUUID: String!
+  examOverview: Boolean
+  lcTemplate: String
+  name: String
+  onlineTutor: String
+  price: PriseInput
+  recordCasePres: String
+  scTemplate: String
+}
+
+input UpdateClinicalExamInput {
+  about: String
+  amount: Float
+  description: String
+  examUUID: String!
+  image: String
+  markingScheme: String
+  name: String
+  sampleQuestion: SampleQuesInp
+}
+
+input UpdateCusCatInput {
+  customCat: String!
+  customCatId: String!
+}
+
+input UpdateFaqInput {
+  answer: String
+  faqUUID: String!
+  question: String
+}
+
+input UpdateFeaturedInput {
+  category: String
+  color: String
+  description: String
+  featureUUID: String!
+  image: String
+  isGuest: Boolean
+  quizUUID: String
+  route: String
+  title: String
+}
+
+input UpdateGeneratedSimulationRecordDto {
+  category: String
+  channelDescription: String
+  channelName: String
+  characterDetails: [AICharacter!]
+  description: String
+  duration: String
+  episodeTitle: String
+  episodeTopics: [String!]
+  eventDescription: String
+  eventName: String
+  eventTemplate: String
+  noOfActors: Float = 0
+  noOfPanelist: Float = 0
+  scheduled: DateTime!
+  scheduledType: String! = "Daily"
+  simulationUUID: String!
+}
+
+input UpdateMedCategoryInput {
+  description: String
+  title: String
+}
+
+input UpdateMedsynopsisCaseInput {
+  caseContent: String
+  caseSummary: String
+  caseTitle: String
+  categoryUUID: String
+  question: String
+}
+
+input UpdatePlaygroundPresCategoryDto {
+  category: String
+  categoryUUID: String
+  subCategory: String
+  topic: String
+}
+
+input UpdatePractCaseCatInp {
+  caseNo: String
+  caseType: String
+  description: String
+  examiners: ExaminerInput
+  image: String
+  medications: String
+  name: String
+  patientOverview: String
+  patientProfile: PatientProfileInp
+  physicalExam: String
+  practCaseCatUUID: String!
+  practCaseUUID: String
+  time: String
+}
+
+input UpdatePractCaseInput {
+  description: String
+  image: String
+  logo: String
+  name: String
+  practCaseUUID: String!
+}
+
+input UpdatePresInput {
+  addInfo: AddInfoInp
+  audience: String
+  goals: String
+  isDraft: Boolean
+  isPublic: Boolean
+  note: String
+  presUUID: String!
+  reference: RefInp
+  script: [JSONObject!]
+  slidesPreview: [PreviewInp!]
+  subTitle: String
+  theme: String
+  threadId: String
+  title: String
+}
+
+input UpdateProductInput {
+  amount: CostInput
+  casePresentation: String
+  caseRecall: String
+  credits: String
+  generalTrivia: Boolean
+  medicalTrivia: Boolean
+  medsynopsis: String
+  multiplayerCapacity: String
+  plan: String
+  productUUID: String!
+  quizAI: String
+  storage: String
+  tokenTopUp: TopUpInput
+}
+
+input UpdateQuestion {
+  answer: Ans!
+  caseUUID: String
+  category: String
+  imageUrls: [String!]
+  keywords: String
+  level: Float
+  options: [Opt!]!
+  question: String!
+  questionUUID: String!
+  quizUUID: String
+  subcategory: SubcategoryInput
+  subject: String
+  subtopic: String
+  topic: String
+}
+
+input UpdateQuestionInput {
+  questions: [UpdateQuestion!]!
+  quizUUID: String!
+}
+
+input UpdateQuizInput {
+  description: String
+  duration: String
+  point: Float
+
+  """
+  Expected: Open ended short and long form, True or False or Multiple choice
+  """
+  questionType: String
+  quizCategory: String
+  quizUUID: String!
+
+  """Expected: count down per question or all time"""
+  timer: String
+  topic: String
+}
+
+input UpdateSetupIntentDto {
+  paymentMethodId: String!
+  setupIntentId: String!
+}
+
+input UpdateSlideProductInput {
+  accessToTemplateDesigns: Boolean
+  aiAssistanceWithSlideCreation: Boolean
+  aiCredits: Float
+  name: String
+  price: CostInput
+  slideProductUUID: String!
+  slideSharing: Boolean
+}
+
+input UpdateStripeSubDto {
+  cancelAtPeriodEnd: Boolean
+  defaultPaymentMethod: String
+  productPriceId: String
+  subscriptionId: String!
+  subscriptionItemsId: String
+
+  """Accepted values: now"""
+  trialEnd: String
+}
+
+input UpdateStripeWebhookDto {
+  enabled_events: [String!]
+  url: String
+  webhooId: String!
+}
+
+input UpdateThreadInput {
+  description: String!
+  threadId: String!
+}
+
+input UpdateUserCaseUploadInput {
+  messageId: String
+  threadId: String
+  userPrompt: String
+  userUUID: String
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadEpisodeRes {
+  fileUrl: String
+  tempFileUUID: String
+}
+
+type UploadFileRes {
+  file_id: String
+}
+
+type UploadQsImageRes {
+  imageUrls: [String!]
+}
+
+type UploadTutorialArticleRes {
+  article: String
+  note: String!
+  sectionUUID: String!
+  title: String!
+  videoUrl: String!
+}
+
+input UploadedEpisode {
+  """The number of the episode i.e 1, 2, 3, etc."""
+  episode: String!
+
+  """The description of the uploaded episode"""
+  episodeDescription: String!
+
+  """The title of the uploaded episode"""
+  episodeTitle: String!
+
+  """The url of the uploaded episode audio file"""
+  fileUrl: String
+
+  """The temp file uuid of the uploaded episode audio file"""
+  tempFileUUID: String!
+}
+
+input UploadedEpisodeInput {
+  episodes: [UploadedEpisode!]!
+  eventUUID: String!
+}
+
+type UserEntity {
+  accountStatus: Disabled
+  app: String
+  caseResults: CaseResult
+  clinExSub: ClinExSub
+  completedLC: [String!]
+  completedSC: [String!]
+  country: Country
+  createdAt: DateTime
+  email: String!
+  firstName: String
+  heardAboutUs: String
+  interest: String
+  isGuest: Boolean
+  isVerified: Boolean
+  lastName: String
+  permissions: [String!]
+  personalized: Boolean
+  phoneNumber: String
+  profileImage: String
+  quizzer: Result
+  role: String
+  slideSub: SlideSub
+  specialty: String
+  state_city: String
+  stripeClinExCust: StripeCustomaData
+  stripeCustomer: StripeCustomaData
+  stripeSlideCust: StripeCustomaData
+  subscription: Sub
+  subspecialty: String
+  threads: UserThread
+  updatedAt: DateTime
+  userUUID: String
+  username: String!
+}
+
+type UserFollowingChannelsType {
+  channelName: String!
+  followedDate: DateTime!
+}
+
+type UserQuestionDetails {
+  options: [Options!]
+  progress: Float!
+  question: String!
+  userResponse: String!
+}
+
+type UserQuizScoreEntity {
+  answer: String!
+  answer_details: String
+  category: String!
+  feedback: String
+  isCorrect: Boolean
+  openEndedSelected: [String!]
+  optionSelected: String
+  options: [String!]
+  question: String!
+  questionUUID: String
+  quizScoreUUID: String!
+  score: Float!
+  sectionTitle: String
+  speed: Float
+  speedBonus: Float
+  subcategory: String!
+  type: String
+}
+
+type UserRecord {
+  categoryName: String!
+  content: [UserSummaryDetail!]!
+  totalScore: Float!
+  totalTimedScore: Float!
+  totalUntimedScore: Float!
+}
+
+input UserScoreTutorialInput {
+  answer: String!
+  answer_details: String!
+  category: String!
+
+  """
+  This is the option selected by the user. NB: for open ended questions, this is an array of strings. for multiple choice questions, this is a single string inside an array
+  """
+  optionSelected: [String!]
+  options: [String!]
+  point: Float!
+  question: String!
+  questionUUID: String
+
+  """This is the title inside the tutorial section array"""
+  sectionTitle: String
+  speed: Float
+
+  """This is the section title of the tutorial"""
+  subcategory: String
+  type: String
+}
+
+type UserSummaryDetail {
+  assignedTime: String
+  caseUUID: String!
+  completionTime: String
+  gameType: String!
+  score: Float!
+  scoreRecord: ScoreRecord!
+  userSummary: String!
+}
+
+type UserThread {
+  caseRecall: String
+  chatAssistant: String
+  clinicalExam: String
+}
+
+type UserVisitedChannelsRes {
+  channels: [String!]!
+  visitedDate: DateTime!
+}
+
+type UserVisitedChannelsType {
+  channelName: String!
+  visitedDate: DateTime!
+}
+
+type UserVisitedEventsEpisodeType {
+  eventName: String!
+  visitedDate: DateTime!
+  visitedEpisodes: String
+}
+
+type UserVisitedEventsType {
+  eventName: String!
+  visitedDate: DateTime!
+}
+
+input ValidateOtpInput {
+  email: String!
+  otp: String!
+}
+
+type Vote {
+  vote: String!
+  voterUUID: String!
+}
+
+input VoteInput {
+  questionUUID: String
+  vote: String!
+}
+
+type playgroundPreviewResType {
+  answer: String!
+  answer_details: String!
+  category: String!
+  comments: String
+  competency: String
+  contentBreakdown: String
+  difficulty: String
+  keywords: String
+  level: String
+  options: [String!]
+  question: String!
+  questionType: String
+  reference: String
+  specialty: String
+  subcategory: String
+  subject: String
+  subspecialty: String
+  subtopic: String
+  system: String
+  topic: String
+}
+
+type playgroundUSMLEType {
+  answer: String!
+  answer_details: String!
+  category: String!
+  level: String
+  options: [String!]!
+  question: String!
+  subcategory: String!
+  subject: String
+  subtopic: String!
+  system: String!
+  topic: String!
 }

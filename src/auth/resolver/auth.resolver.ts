@@ -1,55 +1,57 @@
-import { Module, UseGuards } from '@nestjs/common';
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { User } from 'src/user/entities/user.entity';
-import { CtxUser } from '../decorators/ctx-user.decorator';
-import { ChangePasswordInput } from '../dto/change-password.dto';
-import { FirstLoginInput } from '../dto/first-login.dto';
-import { LoginResponse } from '../dto/login-response.dto';
-import { AuthLoginInput } from '../dto/login.dto';
-import { ResetPasswordInput } from '../dto/reset-password.dto';
-import { GqlAuthGuard } from '../guards/gql-auth.guard';
+import { Args, Context, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { AuthService } from '../service/auth.service';
+import {
+  ValidateOtpInput,
+  LoginInput,
+  SignUpInput,
+  GetOtpInput,
+} from '../dto/auth.input';
+import { LoginRes, MessageRes, RefrestTokenRes } from '../types/auth.types';
+import { UseGuards } from '@nestjs/common';
+import { RefreshTokenAuthGuard } from '../guard/refreshToken.guard';
 
 @Resolver()
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => LoginResponse)
-  async login(@Args('input') input: AuthLoginInput): Promise<LoginResponse> {
-    return await this.authService.login(input);
+  // Create new user
+  @Mutation(() => MessageRes)
+  async registerUser(@Args('signUpInput') signUpInput: SignUpInput) {
+    return await this.authService.registerUser(signUpInput);
   }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => String)
-  async logout(@CtxUser() user: User): Promise<string> {
-    return await this.authService.logout(user.id);
+  // Continue as guest
+  @Mutation(() => LoginRes)
+  async continueAsGuest() {
+    return await this.authService.continueAsGuest();
   }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => String)
-  async changePassword(
-    @CtxUser() user: User,
-    @Args('input') input: ChangePasswordInput,
-  ): Promise<string> {
-    return await this.authService.changePassword(user.id, input);
+  // Login user with emqail and pasword.
+  @Mutation(() => LoginRes)
+  async loginUser(@Args('loginInput') loginInput: LoginInput) {
+    return await this.authService.loginUser(loginInput);
   }
 
-  @Mutation(() => String)
-  async forgotPassword(@Args('email') email: string): Promise<string> {
-    return await this.authService.forgotPassword(email);
+  // Login user with emqail and pasword
+  @Mutation(() => MessageRes)
+  async loginUserOtp(@Args('getOtpInput') getOtpInput: GetOtpInput) {
+    return await this.authService.loginUserOtp(getOtpInput.email);
   }
 
-  @Mutation(() => String)
-  async resetPassword(
-    @Args('input') input: ResetPasswordInput,
-  ): Promise<string> {
-    return await this.authService.resetPassword(input);
+  // Login user with OTP.
+  @Mutation(() => LoginRes)
+  async validateLoginUserOtp(
+    @Args('validateOtpInput') validateOtpInput: ValidateOtpInput,
+  ) {
+    return await this.authService.validateLoginUserOtp(validateOtpInput);
   }
 
-  @Mutation(() => String)
-  async changePasswordAtFirstLogin(
-    @Args('input') input: FirstLoginInput,
-  ): Promise<string> {
-    return await this.authService.changePasswordAtFirstLogin(input);
-  }
+  // // Get a new access token with refresh token
+  // @UseGuards(RefreshTokenAuthGuard)
+  // @Query(() => RefrestTokenRes)
+  // async refreshTokens(@Context() context: any) {
+  //   const { sub: userUUID, refreshToken } = context?.req?.user;
+
+  //   return this.authService.refreshTokens(userUUID, refreshToken);
+  // }
 }

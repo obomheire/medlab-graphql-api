@@ -1,49 +1,95 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserService } from '../service/user.service';
-import { User } from '../entities/user.entity';
-import { CreateUserInput } from '../dto/create-user.input';
-import { UpdateUserInput } from '../dto/update-user.input';
-import { FilterDto } from 'src/utils/dtos/filter.dto';
-import { UserResponse } from '../dto/response.dto';
+import { CalculateRankingRes, MessageRes } from 'src/auth/types/auth.types';
+import { GetOtpInput } from 'src/auth/dto/auth.input';
+import {
+  ContactUsInput,
+  CreditUserInput,
+  ResetPasswordInput,
+} from '../dto/user.input';
+import { GetUser } from 'src/auth/decorator/getUser.decorator';
 import { UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from 'src/auth/guards/gql-auth.guard';
+import { AccessTokenAuthGuard } from 'src/auth/guard/accessToken.guard';
+import { PermissionsGuard } from '../guard/permissions.guard';
+import { Permissions } from '../decorator/permissions.decorator';
+import { PermissionsType } from '../enum/user.enum';
+import { UserDocument, UserEntity } from '../entity/user.entity';
+import { DataRes } from 'src/stripe/types/stripe.types';
+import { ComponentType } from 'src/llm-providers/openAI/enum/assistantAI.enum';
 
-@Resolver(() => User)
+@Resolver()
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  // @UseGuards(GqlAuthGuard)
-  @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.userService.create(createUserInput);
+  // Find if user name exist
+  @Query(() => MessageRes)
+  async findUsername(@Args('username') username: string) {
+    return await this.userService.findUsername(username);
   }
 
-  @UseGuards(GqlAuthGuard)
-  @Query(() => UserResponse, { name: 'users' })
-  async findAll(
-    @Args('filter', { defaultValue: new FilterDto() }) filter?: FilterDto,
-  ): Promise<UserResponse> {
-    return await this.userService.findAll(filter);
+  // Forgot password, send OTP
+  @Mutation(() => MessageRes)
+  async forgotPassword(@Args('getOtpInput') getOtpInput: GetOtpInput) {
+    return await this.userService.forgotPassword(getOtpInput);
   }
 
-  @UseGuards(GqlAuthGuard)
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => String }) id: string) {
-    return this.userService.findOne(id);
-  }
-
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => String)
-  deleteUser(@Args('id', { type: () => String }) id: string) {
-    return this.userService.remove(id);
-  }
-
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => User)
-  updateUser(
-    @Args('id') id: string,
-    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+  // Reset password
+  @Mutation(() => MessageRes)
+  async resetPassword(
+    @Args('resetPasswordInput') resetPasswordInput: ResetPasswordInput,
   ) {
-    return this.userService.update(id, updateUserInput);
+    return await this.userService.resetPassword(resetPasswordInput);
+  }
+
+  // Reset password
+  @UseGuards(AccessTokenAuthGuard)
+  @Query(() => MessageRes)
+  async deactivateAccount(@GetUser() user: UserDocument) {
+    return await this.userService.deactivateAccount(user);
+  }
+
+  // Contact us
+  @Mutation(() => MessageRes)
+  async contactUs(@Args('contactUsInput') contactUsInput: ContactUsInput) {
+    return await this.userService.contactUs(contactUsInput);
+  }
+
+  // Testing update daily and weekly streaks
+  @UseGuards(AccessTokenAuthGuard)
+  @Query(() => MessageRes)
+  async tesingStreaks(@GetUser() user: UserDocument) {
+    return await this.userService.tesingStreaks(user);
+  }
+
+  // Calculate ranking
+  @UseGuards(AccessTokenAuthGuard, PermissionsGuard)
+  @Permissions(PermissionsType.SUPER_ADMIN)
+  @Query(() => CalculateRankingRes)
+  async calculateRanking(@Args('userUUID') userUUID: string) {
+    return await this.userService.calculateRanking(userUUID);
+  }
+
+  // Credit user token for testing
+  @Mutation(() => DataRes)
+  async demoCreditUser(
+    @Args('creditUserInput') { email, amount, app }: CreditUserInput,
+  ) {
+    return await this.userService.demoCreditUser(email, amount, app);
+  }
+
+  // Get UUID
+  @Mutation(() => DataRes)
+  getUUID() {
+    return this.userService.getUUID();
+  }
+
+  // Test event generation
+  @UseGuards(AccessTokenAuthGuard)
+  @Mutation(() => MessageRes)
+  async demoTriggerEvent(
+    @GetUser() user: UserDocument,
+    @Args('event') event: ComponentType,
+  ) {
+    return await this.userService.demoTriggerEvent(user, event);
   }
 }

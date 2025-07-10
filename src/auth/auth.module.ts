@@ -1,28 +1,38 @@
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { GqlAuthGuard } from './guards/gql-auth.guard';
+import { Module, UseGuards } from '@nestjs/common';
 import { AuthService } from './service/auth.service';
-import { TokenService } from './service/token.service';
-import { JwtStrategy } from './strategies/jwt.strategy';
 import { AuthResolver } from './resolver/auth.resolver';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/user/entities/user.entity';
-import { UserModule } from 'src/user/user.module';
+import { AccessTokenStrategy } from './strategy/accessToken.strategy';
+import { JwtModule } from '@nestjs/jwt';
+import { RefreshTokenStrategy } from './strategy/refreshToken.strategy';
 import { MailModule } from 'src/mail/mail.module';
+import { CryptoService } from './service/crypto.service';
+import { SocialLoginResolver } from './resolver/socialLogin.resolver';
+import { SocialLoginService } from './service/socialLogin.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserEntity, UserSchema } from 'src/user/entity/user.entity';
 
 @Module({
-    imports: [
-        UserModule,
-        MailModule,
-        JwtModule.register({
-          secret: process.env.TOKEN_SECRET,
-            signOptions: { expiresIn:
-                process.env.JWT_LIFESPAN,
-            },
-        }),
-        TypeOrmModule.forFeature([User]),
-      ],
-    providers: [TokenService, AuthResolver, AuthService, JwtStrategy, GqlAuthGuard],
-    exports: [TokenService],
+  imports: [
+    MongooseModule.forFeatureAsync([
+      {
+        name: UserEntity.name,
+        useFactory: () => {
+          return UserSchema;
+        },
+      },
+    ]),
+    JwtModule.register({}),
+    MailModule,
+  ],
+  providers: [
+    AuthService,
+    AuthResolver,
+    SocialLoginResolver,
+    AccessTokenStrategy,
+    RefreshTokenStrategy,
+    CryptoService,
+    SocialLoginService,
+  ],
+  exports: [AuthService, CryptoService],
 })
 export class AuthModule {}

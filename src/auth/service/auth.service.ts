@@ -2,262 +2,378 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
-  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthLoginInput } from '../dto/login.dto';
-import { TokenDto } from '../dto/token.dto';
-import { LoginResponse } from '../dto/login-response.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/entities/user.entity';
-import { Repository } from 'typeorm';
-import { TokenResponse } from '../dto/token-response.dto';
 import { UserService } from 'src/user/service/user.service';
-import * as bcrypt from 'bcrypt';
+import { ValidateOtpInput, LoginInput, SignUpInput } from '../dto/auth.input';
+import * as argon from 'argon2';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { RefrestTokenRes, LoginRes, MessageRes } from '../types/auth.types';
 import { MailService } from 'src/mail/mail.service';
-import { sendForgotEmail } from 'src/templates/forgot-password.template';
-import { ResetPasswordInput } from '../dto/reset-password.dto';
-import { ChangePasswordInput } from '../dto/change-password.dto';
-import { AccountStatusEnum } from 'src/user/enum/accountStatus.enum';
-import { FirstLoginInput } from '../dto/first-login.dto';
+import { UserDocument } from 'src/user/entity/user.entity';
+import { WsException } from '@nestjs/websockets';
+import { dynamicTemplates } from 'src/mail/email.constant';
+import { AppType } from 'src/stripe/enum/sub.plan.enum';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly jwt: JwtService,
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
     private readonly userService: UserService,
     private readonly mailService: MailService,
+    private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
-  private signToken(user: TokenDto): string {
-    return this.jwt.sign(user);
-  }
-
-  public async validateUser(userId: string) {
-    const user = await this.userRepository.findOne({
-      where: {
-        id: userId,
-      },
-    });
-    return user;
-  }
-
-  async getTokens(user: TokenDto): Promise<TokenResponse> {
-    const [accessToken, refreshToken] = await Promise.all([
-      this.jwt.signAsync(user, {
-        secret: process.env.TOKEN_SECRET,
-        expiresIn: process.env.JWT_LIFESPAN,
-      }),
-      this.jwt.signAsync(user, {
-        secret: process.env.JWT_REFRESH_SECRET,
-        expiresIn: process.env.JWT_REFRESH_SECRET_EXPIRY,
-      }),
-    ]);
-    return {
-      accessToken,
-      refreshToken,
-    };
-  }
-
-  async decodeToken(token: string) {
-    const decoded = await this.jwt.verifyAsync(token, {
-      secret: process.env.TOKEN_SECRET,
-    });
-    return decoded;
-  }
-
-  async decodeRefreshToken(token: string) {
-    const decoded = await this.jwt.verifyAsync(token, {
-      secret: process.env.JWT_REFRESH_SECRET,
-    });
-    return decoded;
-  }
-
-  async login(input: AuthLoginInput): Promise<LoginResponse> {
-    const { email, unique, password } = input;
-    if (!email && !unique) {
-      throw new BadRequestException('Email or UniqueID is required');
-    }
-    const user = await this.userService.findByEmailOrUnique(email, unique);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    const isPasswordValid = await user.validatePassword(password);
-    console.log(isPasswordValid);
-    if (!isPasswordValid) {
-      throw new BadRequestException('Invalid password');
-    }
-    if (user.accountStatus !== AccountStatusEnum.ACTIVE) {
-      throw new BadRequestException('Account is not active');
-    }
-    const tokens = await this.getTokens({
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-      unique: user.unique,
-      accountStatus: user.accountStatus,
-    });
-    await this.updateRefreshToken(user.id, tokens.refreshToken);
-    // if(user.accountStatus === AccountStatusEnum.INACTIVE){
-    //   user.accountStatus = AccountStatusEnum.ACTIVE
-    //   await this.userRepository.save(user)
-    // }
-
-    return {
-      accessToken: tokens.accessToken,
-      refreshToken: tokens.refreshToken,
-    };
-  }
-
-  async refreshToken(id: string, token: string): Promise<TokenResponse> {
+  // Create new user
+  async registerUser(signUpInput: SignUpInput): Promise<MessageRes> {
     try {
-      const data = await this.userService.findById(id);
-      if (!data || !data.refreshToken)
-        throw new ForbiddenException('Access Denied');
-      const refreshTokenMatches = await bcrypt.compare(
-        data.refreshToken,
-        token,
+      const { password, firstName, lastName, email, app } = signUpInput;
+
+      // Check if firstName or lastName is medscroll
+      if (
+        firstName?.toLowerCase().replace(/\s/g, '') === 'medscroll' ||
+        lastName?.toLowerCase().replace(/\s/g, '') === 'medscroll'
+      )
+        throw new ForbiddenException(
+          'Sorry, you cannot create an account with this name!',
+        );
+
+      // Hash the password and confirm password
+      const hashedPassword = await this.hashData(password);
+
+      // Create the user acount
+      const user = await this.userService.createUser(
+        { ...signUpInput, firstName: firstName || email.split('@')[0] },
+        hashedPassword,
       );
-      if (!refreshTokenMatches) throw new ForbiddenException('Access Denied');
-      const decoded = await this.decodeRefreshToken(token);
-      const user = await this.validateUser(decoded.userId);
-      if (!user) {
-        throw new NotFoundException('User not found');
+
+      if (app === AppType.MEDSCROLL_CLINICAL_EXAMS) {
+        // Send a welcome email to registered user
+        await this.mailService.sendMail(email || user.email, {
+          firstName: user.firstName,
+          templateId: dynamicTemplates.clinExRegWelcomeMailTemplate,
+        });
+
+        user.app = AppType.MEDSCROLL_CLINICAL_EXAMS;
       }
-      const tokens = await this.getTokens({
-        userId: user.id,
-        email: user.email,
-        role: user.role,
-        unique: user.unique,
-        accountStatus: user.accountStatus,
-      });
+
+      if (app === AppType.MEDSCROLL_SLIDE) {
+        user.app = AppType.MEDSCROLL_SLIDE;
+      }
+
+      await user.save();
+
+      // Send OTP
+      return await this.sendOtp(user, dynamicTemplates.otpRegTemplate);
+    } catch (error) {
+      if (error.message.includes('E11000')) {
+        throw new BadRequestException('User with the email already exist');
+      }
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Continue as guest
+  async continueAsGuest(): Promise<LoginRes> {
+    try {
+      // Create quest user acount
+      const guest = await this.userService.continueAsGuest();
+
+      const tokens = await this.getTokens(guest.userUUID);
 
       return {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
+        user: guest,
+        access_token: tokens.accessToken,
       };
     } catch (error) {
-      throw new ForbiddenException('Access Denied');
+      throw new BadRequestException(error.message);
     }
   }
 
-  private async updateRefreshToken(
-    userId: string,
-    token: string,
-  ): Promise<void> {
-    //hash the refresh token
-    const hashedToken = await bcrypt.hash(token, 10);
-
-    await this.userService.updateRefreshToken(userId, hashedToken);
-  }
-
-  async logout(userId: string, refreshToken = null): Promise<string> {
+  // Login user with email and password.
+  async loginUser({ email, password }: LoginInput): Promise<LoginRes> {
     try {
-      await this.userService.updateRefreshToken(userId, refreshToken);
-      return 'logout successful';
-    } catch (error) {
-      throw new ForbiddenException('Access Denied');
-    }
-  }
+      const user = await this.userService.getUserByEmail(email);
 
-  async forgotPassword(email: string): Promise<string> {
-    try {
-      const user = await this.userService.findByEmail(email);
-      if (!user) {
-        throw new NotFoundException('User not found');
+      const { userUUID, firstName, isVerified, password: _password } = user;
+
+      const isPasswordValid = await this.verifyHashData(_password, password);
+
+      if (!isPasswordValid)
+        throw new UnauthorizedException('Invalid credentials!');
+
+      // Send OTP if user account is not verified
+      if (!isVerified)
+        return await this.sendOtp(user, dynamicTemplates.otpRegTemplate);
+
+      const tokens = await this.getTokens(userUUID);
+
+      await this.updateRefreshToken(userUUID, tokens.refreshToken);
+
+      // Check if isDeactivated if true
+      if (user?.accountStatus?.isDisabled) {
+        user.accountStatus.isDisabled = false;
+        user.accountStatus.dateDisabled = null;
+
+        // Mark accountStatus field as modified
+        user.markModified('accountStatus');
+        await user.save();
       }
-      const token = await this.jwt.signAsync(
-        {
-          userId: user.id,
-        },
-        {
-          secret: process.env.TOKEN_SECRET,
-          expiresIn: process.env.JWT_LIFESPAN,
-        },
-      );
-      //send email
-      const link = `${process.env.FRONTEND_URL}/reset-password/${token}`;
-      const htmlTemplate = sendForgotEmail(user.firstName, link);
-      const message = `Hi ${user.firstName}, <br><br> Please click on the link to reset your password: <a href="${link}">${link}</a>`;
-      await this.mailService.sendMail(
-        message,
-        htmlTemplate,
-        email,
-        'Reset Password',
-      );
-      return token;
+
+      return {
+        user,
+        access_token: tokens.accessToken,
+      };
     } catch (error) {
-      throw new ForbiddenException('Access Denied');
+      if (error instanceof UnauthorizedException)
+        throw new UnauthorizedException(error.message);
+      throw new BadRequestException(error.message);
     }
   }
 
-  async resetPassword(resetPassword: ResetPasswordInput): Promise<string> {
+  // Login user with OTP.
+  async loginUserOtp(email: string): Promise<MessageRes> {
     try {
-      const { token, password } = resetPassword;
-      const decoded = await this.jwt.verifyAsync(token, {
-        secret: process.env.TOKEN_SECRET,
+      const user = await this.userService.getUserByEmail(email);
+
+      // Check if isDeactivated if true
+      if (user?.accountStatus?.isDisabled) {
+        user.accountStatus.isDisabled = false;
+        user.accountStatus.dateDisabled = null;
+
+        // Mark accountStatus field as modified
+        user.markModified('accountStatus');
+        await user.save();
+      }
+
+      return await this.sendOtp(user, dynamicTemplates.otpLoginTemplate);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Valdate login user OTP.
+  async validateLoginUserOtp({
+    email,
+    otp,
+  }: ValidateOtpInput): Promise<LoginRes> {
+    try {
+      const user = await this.userService.getUserByEmail(email);
+
+      const { userUUID, firstName, isVerified } = user;
+
+      const isOtpValid = await this.validateOtp(otp, user);
+
+      if (!isOtpValid) throw new ForbiddenException('Invalid OTP!');
+
+      const tokens = await this.getTokens(userUUID);
+
+      await this.updateRefreshToken(userUUID, tokens.refreshToken);
+
+      if (!isVerified) {
+        user.isVerified = true;
+
+        await user.save();
+      }
+
+      return {
+        user,
+        access_token: tokens.accessToken,
+      };
+    } catch (error) {
+      if (error instanceof ForbiddenException)
+        throw new ForbiddenException(error.message);
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Get a new access token with refresh token
+  async refreshTokens(
+    userUUID: string,
+    refreshToken: string,
+  ): Promise<RefrestTokenRes> {
+    try {
+      const user = await this.userService.getUserByUUID(userUUID);
+      const { firstName, refreshToken: _refreshToken } = user;
+
+      if (!user || !refreshToken) throw new ForbiddenException('Access Denied');
+
+      const refreshTokenMatches = await this.verifyHashData(
+        _refreshToken,
+        refreshToken,
+      );
+
+      if (!refreshTokenMatches) throw new ForbiddenException('Access Denied');
+
+      const tokens = await this.getTokens(userUUID);
+
+      await this.updateRefreshToken(userUUID, tokens.refreshToken);
+
+      return {
+        access_token: tokens.accessToken,
+        refresh_token: tokens.refreshToken,
+      };
+    } catch (error) {
+      if (error instanceof ForbiddenException)
+        throw new ForbiddenException(error.message);
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  //send otp to user's email
+  async sendOtp(
+    user: UserDocument,
+    templateId: string,
+    email?: string,
+  ): Promise<{ message: string }> {
+    try {
+      //generate 6 digit random number and send it to user email as otp
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+      await this.mailService.sendMail(email || user.email, {
+        firstName: user.firstName,
+        otp,
+        templateId,
       });
-      const user = await this.userService.findById(decoded.userId);
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-      const hashedPassword = await bcrypt.hash(password, 10);
-      await this.userService.updatePassword(user.id, hashedPassword);
-      return 'Password reset successful';
+
+      // otpExpiry is set to 1 hour from the time the otp is generated
+      const otpExpiry = new Date(); // Current date
+
+      otpExpiry.setHours(otpExpiry.getHours() + 1); // Add one hour to current date
+
+      const hashedOtp = await this.hashData(otp); // Hash the otp
+
+      user.otp = hashedOtp;
+      user.otpExpiry = otpExpiry;
+
+      await user.save();
+
+      return {
+        message:
+          'Verification is required, please check your email for instruction to continue',
+      };
     } catch (error) {
-      throw new ForbiddenException('Access Denied');
+      throw new BadRequestException(error.message);
     }
   }
 
-  //user change password
-  async changePassword(
-    userId: string,
-    changePassword: ChangePasswordInput,
-  ): Promise<string> {
+  // Validate OTP from user
+  async validateOtp(otp: string, user: UserDocument): Promise<boolean> {
     try {
-      const { oldPassword, newPassword } = changePassword;
-      const user = await this.userService.findById(userId);
-      if (!user) {
-        throw new NotFoundException('User not found');
+      if (!user.otp) throw new ForbiddenException('Invalid OTP');
+
+      //compare the otp which is hashed saved in the db
+      const isOtpValid = await this.verifyHashData(user.otp, otp);
+
+      if (!isOtpValid) throw new ForbiddenException('Invalid OTP');
+
+      //check if otp is still valid
+      const otpExpiry = new Date(user.otpExpiry);
+
+      const now = new Date();
+
+      if (now > otpExpiry) {
+        throw new ForbiddenException('OTP has expired');
       }
-      const isPasswordValid = await user.validatePassword(oldPassword);
-      if (!isPasswordValid) {
-        throw new BadRequestException('Invalid password');
-      }
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      await this.userService.updatePassword(user.id, hashedPassword);
-      return 'Password change successful';
+
+      user.otp = null;
+      await user.save();
+
+      return true;
     } catch (error) {
-      throw new ForbiddenException('Access Denied');
+      if (error instanceof ForbiddenException)
+        throw new ForbiddenException(error.message);
+      throw new BadRequestException(error.message);
     }
   }
 
-  //change password at first login. the login is with email and password. then prompt to change password. then update account status from inactive to active
-  async changePasswordAtFirstLogin(data: FirstLoginInput): Promise<string> {
+  // Get tokens
+  async getTokens(userUUID: string) {
     try {
-      const { email, password, newPassword, confirmPassword } = data;
-      const user = await this.userService.findByEmail(email);
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-      const isPasswordValid = await user.validatePassword(password);
-      console.log(isPasswordValid);
-      if (!isPasswordValid) {
-        throw new BadRequestException('Invalid password');
-      }
-      if (newPassword !== confirmPassword) {
-        throw new BadRequestException('Password mismatch');
-      }
-      const newUser = await this.userService.updatePassword(
-        user.id,
-        newPassword,
-      );
-      newUser.accountStatus = AccountStatusEnum.ACTIVE;
-      await this.userRepository.save(newUser);
-      return 'Password change successful, you cqan now login';
+      const [accessToken, refreshToken] = await Promise.all([
+        this.jwtService.signAsync(
+          {
+            sub: userUUID,
+          },
+          {
+            secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
+            // expiresIn: '1d',
+          },
+        ),
+        this.jwtService.signAsync(
+          {
+            sub: userUUID,
+          },
+          {
+            secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+            expiresIn: '7d',
+          },
+        ),
+      ]);
+
+      return {
+        accessToken,
+        refreshToken,
+      };
     } catch (error) {
-      throw error;
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Decode jws token
+  async verifyToken(token: string) {
+    try {
+      const tokenSecret = this.configService.get<string>('JWT_ACCESS_SECRET');
+
+      const { sub: userUUID } = this.jwtService.verify(token, {
+        secret: tokenSecret,
+      });
+
+      const user = await this.userService.getUserByUUID(userUUID);
+
+      return {
+        userUUID,
+        userId: user?.id,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        url: user?.profileImage,
+        plan: user?.subscription?.plan,
+      };
+    } catch (error) {
+      throw new UnauthorizedException(error.message);
+    }
+  }
+
+  // Hash passsword
+  async hashData(password: string): Promise<string> {
+    try {
+      return await argon.hash(password);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Verify password with hashed data
+  async verifyHashData(
+    userPassword: string,
+    password: string,
+  ): Promise<boolean> {
+    try {
+      return await argon.verify(userPassword, password);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  // Update user's refresh token
+  async updateRefreshToken(userUUID: string, refreshToken: string) {
+    try {
+      const hashedRefreshToken = await this.hashData(refreshToken);
+
+      await this.userService.updateAccessToken(userUUID, hashedRefreshToken);
+    } catch (error) {
+      throw new WsException(error.message);
     }
   }
 }
